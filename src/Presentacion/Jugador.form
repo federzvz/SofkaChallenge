@@ -5,9 +5,6 @@
     <Container class="javax.swing.JFrame" name="jFrameCrearJugador">
       <Properties>
         <Property name="title" type="java.lang.String" value="A&#xf1;adir Jugador"/>
-        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[400, 150]"/>
-        </Property>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[400, 150]"/>
         </Property>

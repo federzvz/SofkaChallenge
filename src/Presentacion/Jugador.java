@@ -8,6 +8,7 @@ package Presentacion;
 import Logica.Fabrica;
 import Logica.Interfaz.IControladorJugador;
 import java.awt.Dimension;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -267,7 +268,12 @@ public class Jugador extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonCrearPerfilActionPerformed
 
     private void jButtonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearActionPerformed
-        this.ICJUG.ingresarJugador(this.jTextFieldNickname.getText());
+        if(this.ICJUG.ingresarJugador(this.jTextFieldNickname.getText())){
+            JOptionPane.showMessageDialog(this, "Jugador agregado con éxito.");
+            jFrameCrearJugador.dispose();
+        }else{
+            JOptionPane.showMessageDialog(this, "ERROR: Es posible que el nickname ingresado ya exista.");
+        }
     }//GEN-LAST:event_jButtonCrearActionPerformed
 
 

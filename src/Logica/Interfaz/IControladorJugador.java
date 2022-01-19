@@ -10,5 +10,5 @@ package Logica.Interfaz;
  * @author Admin
  */
 public interface IControladorJugador {
-    public abstract void ingresarJugador(String nickname);
+    public abstract boolean ingresarJugador(String nickname);
 }

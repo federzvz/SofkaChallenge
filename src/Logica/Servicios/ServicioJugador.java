@@ -5,9 +5,11 @@
  */
 package Logica.Servicios;
 
+import Logica.Clases.Categoria;
 import Persistencia.ConexionDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -24,9 +26,17 @@ public class ServicioJugador {
 
     public boolean ingresarJugador(String nickname) {
         try {
-            PreparedStatement status = conexion.prepareStatement("INSERT INTO jugadores (nickname) VALUES (?)");
+            PreparedStatement status = conexion.prepareStatement("SELECT nickname FROM jugadores WHERE jugadores.nickname=?");
             status.setString(1, nickname);
-            status.execute();
+            ResultSet rs = status.executeQuery();
+            while (rs.next()) {
+                if(rs.getString("nickname").equalsIgnoreCase(nickname)){
+                    return false;
+                }
+            }
+            PreparedStatement status2 = conexion.prepareStatement("INSERT INTO jugadores (nickname) VALUES (?)");
+            status2.setString(1, nickname);
+            status2.execute();
         } catch (SQLException ex) {
             ex.printStackTrace();
             return false;

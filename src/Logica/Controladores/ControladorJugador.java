@@ -30,7 +30,7 @@ public class ControladorJugador implements IControladorJugador {
         return instancia;
     }
 
-    public void ingresarJugador(String nickname) {
-        this.servicioJugador.ingresarJugador(nickname);
+    public boolean ingresarJugador(String nickname) {
+        return this.servicioJugador.ingresarJugador(nickname);
     }
 }
