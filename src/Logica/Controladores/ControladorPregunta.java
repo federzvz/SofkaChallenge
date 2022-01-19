@@ -26,5 +26,10 @@ public class ControladorPregunta implements IControladorPregunta {
         return instancia;
     }
 
+    public ControladorPregunta() {
+    }
+    
+    
+
     
 }

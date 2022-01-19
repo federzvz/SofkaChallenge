@@ -5,18 +5,23 @@
  */
 package Presentacion;
 
+import Logica.Fabrica;
+import Logica.Interfaz.IControladorJugador;
+import java.awt.Dimension;
+
 /**
  *
  * @author Admin
  */
 public class Jugador extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form Jugador
-     */
+    private IControladorJugador ICJUG;
     public Jugador() {
         initComponents();
+        this.ICJUG = Fabrica.getInstance().getIControladorJugador();
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,6 +32,11 @@ public class Jugador extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFrameCrearJugador = new javax.swing.JFrame();
+        jPanel1 = new javax.swing.JPanel();
+        jTextFieldNickname = new javax.swing.JTextField();
+        jLabelCrearJugadorNombre = new javax.swing.JLabel();
+        jButtonCrear = new javax.swing.JButton();
         jPanelFondo = new javax.swing.JPanel();
         jPanelSobreFondo = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -41,6 +51,64 @@ public class Jugador extends javax.swing.JInternalFrame {
         jLabelDineroObtenido1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+
+        jFrameCrearJugador.setTitle("Añadir Jugador");
+        jFrameCrearJugador.setMaximumSize(new java.awt.Dimension(400, 150));
+        jFrameCrearJugador.setMinimumSize(new java.awt.Dimension(400, 150));
+        jFrameCrearJugador.setResizable(false);
+
+        jPanel1.setBackground(new java.awt.Color(0, 102, 153));
+        jPanel1.setMaximumSize(new java.awt.Dimension(400, 150));
+        jPanel1.setMinimumSize(new java.awt.Dimension(400, 150));
+        jPanel1.setPreferredSize(new java.awt.Dimension(400, 150));
+
+        jLabelCrearJugadorNombre.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelCrearJugadorNombre.setText("Nickname");
+
+        jButtonCrear.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButtonCrear.setText("Crear");
+        jButtonCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCrearActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonCrear)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabelCrearJugadorNombre)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldNickname, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(40, 40, 40))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelCrearJugadorNombre)
+                    .addComponent(jTextFieldNickname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonCrear)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jFrameCrearJugadorLayout = new javax.swing.GroupLayout(jFrameCrearJugador.getContentPane());
+        jFrameCrearJugador.getContentPane().setLayout(jFrameCrearJugadorLayout);
+        jFrameCrearJugadorLayout.setHorizontalGroup(
+            jFrameCrearJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jFrameCrearJugadorLayout.setVerticalGroup(
+            jFrameCrearJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         setBackground(new java.awt.Color(0, 102, 153));
         setMaximumSize(new java.awt.Dimension(1024, 740));
@@ -190,13 +258,25 @@ public class Jugador extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButtonCrearPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearPerfilActionPerformed
-        // TODO add your handling code here:
+        Dimension desktopSize = Main.jDesktopPane1.getSize();
+        Dimension jInternalFrameSize = jFrameCrearJugador.getSize();
+        jFrameCrearJugador.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+        (desktopSize.height- jInternalFrameSize.height)/2);
+        jFrameCrearJugador.setVisible(true);
+        jFrameCrearJugador.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButtonCrearPerfilActionPerformed
+
+    private void jButtonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearActionPerformed
+        this.ICJUG.ingresarJugador(this.jTextFieldNickname.getText());
+    }//GEN-LAST:event_jButtonCrearActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonCrear;
     private javax.swing.JButton jButtonCrearPerfil;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JFrame jFrameCrearJugador;
+    private javax.swing.JLabel jLabelCrearJugadorNombre;
     private javax.swing.JLabel jLabelDineroObtenido;
     private javax.swing.JLabel jLabelDineroObtenido1;
     private javax.swing.JLabel jLabelNickname;
@@ -205,9 +285,11 @@ public class Jugador extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabelUserDineroObtenido;
     private javax.swing.JLabel jLabelUserNickname;
     private javax.swing.JLabel jLabelUserPartidasJugadas;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelFondo;
     private javax.swing.JPanel jPanelSobreFondo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextFieldNickname;
     // End of variables declaration//GEN-END:variables
 }

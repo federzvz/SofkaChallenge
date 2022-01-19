@@ -6,9 +6,11 @@
 package Logica;
 
 import Logica.Controladores.ControladorCategoria;
+import Logica.Controladores.ControladorJugador;
 import Logica.Controladores.ControladorPartida;
 import Logica.Controladores.ControladorPregunta;
 import Logica.Interfaz.IControladorCategoria;
+import Logica.Interfaz.IControladorJugador;
 import Logica.Interfaz.IControladorPartida;
 import Logica.Interfaz.IControladorPregunta;
 
@@ -36,9 +38,14 @@ public class Fabrica {
         IControladorPregunta ControladorP = ControladorPregunta.getInstance();
         return ControladorP; //To change body of generated methods, choose Tools | Templates.
     }
-    
-        public IControladorCategoria getIControladorCategoria() {
+
+    public IControladorCategoria getIControladorCategoria() {
         IControladorCategoria ControladorCAT = ControladorCategoria.getInstance();
         return ControladorCAT; //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public IControladorJugador getIControladorJugador() {
+        IControladorJugador ControladorJUG = ControladorJugador.getInstance();
+        return ControladorJUG; //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -30,6 +30,11 @@ public class ControladorPartida implements IControladorPartida {
         }
         return instancia;
     }
+
+    public ControladorPartida() {
+    }
+    
+    
     
     public Pregunta generarPregunta(List<Categoria> categoria, int numeroRonda){ //Se seleccionará la pregunta dado el número de la ronda.
         Pregunta preguntaAux=new Pregunta();
