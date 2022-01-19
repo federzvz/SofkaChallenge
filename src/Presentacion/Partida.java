@@ -355,24 +355,27 @@ public class Partida extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRetirarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetirarseActionPerformed
+
+    }//GEN-LAST:event_jButtonRetirarseActionPerformed
+
+    public void mostrarPreguntas() {
         List<Categoria> test = this.ICCAT.crearCategoriasConPreguntas();
         for (int i = 0; i < test.size(); i++) {
-            System.out.println(test.get(i).getNivelDeComplejidad());
-            System.out.println(test.get(i).getNombre());
+            System.out.println("COMPLEJIDAD:" + test.get(i).getNivelDeComplejidad());
+            System.out.println("CATEGORÍA:" + test.get(i).getNombre());
             List<Pregunta> test2 = new ArrayList<>();
-            test2=test.get(i).getPreguntas();
-            for(int j = 0; j < test2.size(); j ++){
+            test2 = test.get(i).getPreguntas();
+            for (int j = 0; j < test2.size(); j++) {
                 System.out.println(test2.get(j).getPregunta());
                 System.out.println(test2.get(j).getRespuestaCorrecta());
                 List<String> test3incorrectas = new ArrayList<>();
-                test3incorrectas=test2.get(j).getRespuestasIncorrectas();
-                for(int h = 0; h < test3incorrectas.size(); h ++){
+                test3incorrectas = test2.get(j).getRespuestasIncorrectas();
+                for (int h = 0; h < test3incorrectas.size(); h++) {
                     System.out.println(test3incorrectas.get(h));
                 }
             }
         }
-    }//GEN-LAST:event_jButtonRetirarseActionPerformed
-
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonResponder;
