@@ -428,6 +428,7 @@ public class Partida extends javax.swing.JInternalFrame {
                 resetearColores();
             }else{
                 JOptionPane.showMessageDialog(this, "Respuesta Incorrecta.");
+                this.dispose();
             }
         } else {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una opción.");

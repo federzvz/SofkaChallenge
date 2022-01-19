@@ -45,8 +45,6 @@ public class Main extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
 
         jMenuItem3.setText("jMenuItem3");
 
@@ -85,13 +83,11 @@ public class Main extends javax.swing.JFrame {
 
         jMenu2.setText("Perfil");
         jMenu2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        jMenuItem1.setText("Mi Perfil");
-        jMenu2.add(jMenuItem1);
-
-        jMenuItem2.setText("Historial de Partidas");
-        jMenu2.add(jMenuItem2);
-
+        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenu2MousePressed(evt);
+            }
+        });
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -109,6 +105,17 @@ public class Main extends javax.swing.JFrame {
                 (desktopSize.height - jInternalFrameSize.height) / 2);
         ventana.setVisible(true);
     }//GEN-LAST:event_jMenu1MousePressed
+
+    private void jMenu2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MousePressed
+        this.jDesktopPane1.removeAll();
+        Jugador ventana2 = new Jugador();
+        this.jDesktopPane1.add(ventana2);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension jInternalFrameSize = ventana2.getSize();
+        ventana2.setLocation((desktopSize.width - jInternalFrameSize.width) / 2,
+                (desktopSize.height - jInternalFrameSize.height) / 2);
+        ventana2.setVisible(true);
+    }//GEN-LAST:event_jMenu2MousePressed
 
     /**
      * @param args the command line arguments
@@ -146,12 +153,10 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
+    public static javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     // End of variables declaration//GEN-END:variables
 }
