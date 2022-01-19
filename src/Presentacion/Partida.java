@@ -9,6 +9,7 @@ import Logica.Clases.Categoria;
 import Logica.Clases.Pregunta;
 import Logica.Fabrica;
 import Logica.Interfaz.IControladorCategoria;
+import Logica.Interfaz.IControladorJugador;
 import Logica.Interfaz.IControladorPartida;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -29,11 +30,15 @@ public class Partida extends javax.swing.JInternalFrame {
     private int premio = 100;
     private int[] premiosPorRonda = new int[5];
     private Pregunta preguntaDeRonda = new Pregunta();
+    private IControladorJugador ICJUG;
+    private List<String> Jugadores;
 
     public Partida() {
         initComponents();
         this.ICCAT = Fabrica.getInstance().getIControladorCategoria();
         this.ICPAR = Fabrica.getInstance().getIControladorPartida();
+        this.ICJUG = Fabrica.getInstance().getIControladorJugador();
+        rellenarComboBoxJugadores();
         premiosPorRonda = establecerPremios();
         actualizarDatosDePartida();
         preguntaDeRonda = this.ICPAR.generarPregunta(this.ICCAT.crearCategoriasConPreguntas(), ronda);
@@ -72,6 +77,8 @@ public class Partida extends javax.swing.JInternalFrame {
         jLabelPremioAcumuladoNum = new javax.swing.JLabel();
         jLabelPremioActualTitulo = new javax.swing.JLabel();
         jLabelPremioActualNum = new javax.swing.JLabel();
+        jLabelJugadorTxt = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(0, 102, 153));
         setMaximumSize(new java.awt.Dimension(1024, 740));
@@ -344,6 +351,11 @@ public class Partida extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
+        jLabelJugadorTxt.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabelJugadorTxt.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelJugadorTxt.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabelJugadorTxt.setText("Jugador: ");
+
         javax.swing.GroupLayout jPanelFondoLayout = new javax.swing.GroupLayout(jPanelFondo);
         jPanelFondo.setLayout(jPanelFondoLayout);
         jPanelFondoLayout.setHorizontalGroup(
@@ -357,8 +369,13 @@ public class Partida extends javax.swing.JInternalFrame {
                     .addGroup(jPanelFondoLayout.createSequentialGroup()
                         .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanelRondas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonRetirarse))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanelFondoLayout.createSequentialGroup()
+                                .addComponent(jButtonRetirarse)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabelJugadorTxt)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 294, Short.MAX_VALUE)
                         .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonResponder, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPanelPremios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -384,7 +401,9 @@ public class Partida extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonResponder, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonRetirarse, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonRetirarse, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelJugadorTxt)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27))
             .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelFondoLayout.createSequentialGroup()
@@ -419,20 +438,24 @@ public class Partida extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jPanelOpcion4MousePressed
 
     private void jButtonResponderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResponderActionPerformed
+        //if (this.jTextFieldJugadorJugando.getText().equals("")) {
+        // JOptionPane.showMessageDialog(this, "No está participando ningún jugador, debe seleccionar un jugador.");
+        // } else {
         if (isOpcionSeleccionada() == true) {
-            if(obtenerOpcionSeleccionada().equalsIgnoreCase(preguntaDeRonda.getRespuestaCorrecta())){
+            if (obtenerOpcionSeleccionada().equalsIgnoreCase(preguntaDeRonda.getRespuestaCorrecta())) {
                 siguienteRonda();
                 actualizarDatosDePartida();
                 preguntaDeRonda = this.ICPAR.generarPregunta(this.ICCAT.crearCategoriasConPreguntas(), ronda);
                 actualizarOpcionesDePreguntasCategoria(preguntaDeRonda);
                 resetearColores();
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(this, "Respuesta Incorrecta.");
                 this.dispose();
             }
         } else {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una opción.");
         }
+        //}
     }//GEN-LAST:event_jButtonResponderActionPerformed
 
     public void mostrarPreguntas() {
@@ -547,19 +570,28 @@ public class Partida extends javax.swing.JInternalFrame {
             return this.jLabelOpcPregunta4.getText();
         }
     }
-    
-    public void resetearColores(){
+
+    public void resetearColores() {
         this.jPanelOpcion1.setBackground(Color.LIGHT_GRAY);
         this.jPanelOpcion2.setBackground(Color.LIGHT_GRAY);
         this.jPanelOpcion3.setBackground(Color.LIGHT_GRAY);
         this.jPanelOpcion4.setBackground(Color.LIGHT_GRAY);
     }
 
+    public void rellenarComboBoxJugadores() {
+        this.Jugadores = this.ICJUG.obtenerNicknamesJugadores();
+        for (int i = 0; i < this.Jugadores.size(); i++) {
+            this.jComboBox1.addItem(this.Jugadores.get(i));
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonResponder;
     private javax.swing.JButton jButtonRetirarse;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabelCategoria;
+    private javax.swing.JLabel jLabelJugadorTxt;
     private javax.swing.JLabel jLabelNumero;
     private javax.swing.JLabel jLabelOpcPregunta1;
     private javax.swing.JLabel jLabelOpcPregunta2;

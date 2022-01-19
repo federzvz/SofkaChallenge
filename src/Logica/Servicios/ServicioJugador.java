@@ -7,10 +7,16 @@ package Logica.Servicios;
 
 import Logica.Clases.Categoria;
 import Persistencia.ConexionDB;
+import Presentacion.Jugador;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,10 +25,9 @@ import java.sql.SQLException;
 public class ServicioJugador {
 
     private Connection conexion = new ConexionDB().getConexion();
-    
+
     public ServicioJugador() {
     }
-
 
     public boolean ingresarJugador(String nickname) {
         try {
@@ -30,7 +35,7 @@ public class ServicioJugador {
             status.setString(1, nickname);
             ResultSet rs = status.executeQuery();
             while (rs.next()) {
-                if(rs.getString("nickname").equalsIgnoreCase(nickname)){
+                if (rs.getString("nickname").equalsIgnoreCase(nickname)) {
                     return false;
                 }
             }
@@ -43,4 +48,35 @@ public class ServicioJugador {
         }
         return true;
     }
+    
+    public List<String> obtenerNicknamesJugadores(){
+        List<String> jugadores = new ArrayList<>();
+        try {
+            Statement status = conexion.createStatement();
+            ResultSet rs = status.executeQuery("SELECT * FROM jugadores");
+            while (rs.next()) {
+                jugadores.add(rs.getString("nickname"));
+            }
+        } catch (Exception e) {
+            return null;
+        }
+        return jugadores;
+    }
+
+//    public List<Jugador> obtenerJugadores() {
+//        List<Jugador> jugadores = new ArrayList<>();
+//        try {
+//            Statement status = conexion.createStatement();
+//            ResultSet rs = status.executeQuery("SELECT usu_nick FROM usuario, usuario_funcion WHERE usuario.usu_id=usuario_funcion.usu_id AND usuario_funcion.funcion_id='" + idFuncion + "'");
+//            while (rs.next()) {
+//
+//                //jugadores.add(rs.getString(1));
+//            }
+//        } catch (Exception e) {
+//            return null;
+//        }
+//        return jugadores;
+//    }
+
 }
+

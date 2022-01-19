@@ -5,10 +5,13 @@
  */
 package Logica.Interfaz;
 
+import java.util.List;
+
 /**
  *
  * @author Admin
  */
 public interface IControladorJugador {
     public abstract boolean ingresarJugador(String nickname);
+    public abstract List<String> obtenerNicknamesJugadores();
 }

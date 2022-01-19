@@ -7,6 +7,7 @@ package Logica.Controladores;
 
 import Logica.Interfaz.IControladorJugador;
 import Logica.Servicios.ServicioJugador;
+import java.util.List;
 
 /**
  *
@@ -32,5 +33,9 @@ public class ControladorJugador implements IControladorJugador {
 
     public boolean ingresarJugador(String nickname) {
         return this.servicioJugador.ingresarJugador(nickname);
+    }
+    
+    public List<String> obtenerNicknamesJugadores(){
+        return this.servicioJugador.obtenerNicknamesJugadores();
     }
 }
