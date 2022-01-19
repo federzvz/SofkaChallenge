@@ -210,6 +210,18 @@ public class ControladorCategoria implements IControladorCategoria {
         preguntaAux = new Pregunta(); //Reseteamos la variable
         respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
         
+        preguntaAux.setPregunta("¿Cuánto suman los ángulos de un cuadrado?");
+        respuestasIncorrectas.add("380");
+        respuestasIncorrectas.add("350");
+        respuestasIncorrectas.add("180");
+        respuestaCorrecta = "360";
+        preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
+        preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
+        preguntas.add(preguntaAux);
+        
+        preguntaAux = new Pregunta(); //Reseteamos la variable
+        respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
+        
         preguntaAux.setPregunta("¿Quién escribió La Odisea?");
         respuestasIncorrectas.add("Este poema de 24 cantos fue escrito por Copernico");
         respuestasIncorrectas.add("Este poema de 24 cantos fue escrito por Spartaco");

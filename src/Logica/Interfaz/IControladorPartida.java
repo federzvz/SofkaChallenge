@@ -5,10 +5,14 @@
  */
 package Logica.Interfaz;
 
+import Logica.Clases.Categoria;
+import Logica.Clases.Pregunta;
+import java.util.List;
+
 /**
  *
  * @author Admin
  */
 public interface IControladorPartida {
-    
+    public abstract Pregunta generarPregunta(List<Categoria> categoria, int numeroRonda);
 }

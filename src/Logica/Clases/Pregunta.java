@@ -12,7 +12,7 @@ import java.util.List;
  * @author Admin
  */
 public class Pregunta extends Categoria {
-    private String pregunta, respuestaCorrecta;
+    private String pregunta, respuestaCorrecta, categoria;
     private List<String> respuestasIncorrectas;
 
     public Pregunta(String pregunta, String respuestaCorrecta, List<String> respuestasIncorrectas) {
@@ -47,6 +47,15 @@ public class Pregunta extends Categoria {
     public void setRespuestasIncorrectas(List<String> respuestasIncorrectas) {
         this.respuestasIncorrectas = respuestasIncorrectas;
     }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+    
     
     
 }

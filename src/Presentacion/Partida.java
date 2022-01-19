@@ -9,8 +9,12 @@ import Logica.Clases.Categoria;
 import Logica.Clases.Pregunta;
 import Logica.Fabrica;
 import Logica.Interfaz.IControladorCategoria;
+import Logica.Interfaz.IControladorPartida;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,10 +23,21 @@ import java.util.List;
 public class Partida extends javax.swing.JInternalFrame {
 
     private IControladorCategoria ICCAT;
+    private IControladorPartida ICPAR;
+    private int ronda = 1;
+    private int acumulado = 0;
+    private int premio = 100;
+    private int[] premiosPorRonda = new int[5];
+    private Pregunta preguntaDeRonda = new Pregunta();
 
     public Partida() {
         initComponents();
         this.ICCAT = Fabrica.getInstance().getIControladorCategoria();
+        this.ICPAR = Fabrica.getInstance().getIControladorPartida();
+        premiosPorRonda = establecerPremios();
+        actualizarDatosDePartida();
+        preguntaDeRonda = this.ICPAR.generarPregunta(this.ICCAT.crearCategoriasConPreguntas(), ronda);
+        actualizarOpcionesDePreguntasCategoria(preguntaDeRonda);
     }
 
     /**
@@ -40,13 +55,13 @@ public class Partida extends javax.swing.JInternalFrame {
         jLabelCategoria = new javax.swing.JLabel();
         jPanelOpcionesPreguntas = new javax.swing.JPanel();
         jPanelOpcion1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelOpcPregunta1 = new javax.swing.JLabel();
         jPanelOpcion2 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        jLabelOpcPregunta2 = new javax.swing.JLabel();
         jPanelOpcion3 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        jLabelOpcPregunta3 = new javax.swing.JLabel();
         jPanelOpcion4 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
+        jLabelOpcPregunta4 = new javax.swing.JLabel();
         jButtonResponder = new javax.swing.JButton();
         jButtonRetirarse = new javax.swing.JButton();
         jPanelRondas = new javax.swing.JPanel();
@@ -102,12 +117,18 @@ public class Partida extends javax.swing.JInternalFrame {
         jPanelOpcionesPreguntas.setBackground(new java.awt.Color(0, 73, 110));
         jPanelOpcionesPreguntas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanelOpcion1.setBackground(java.awt.Color.lightGray);
         jPanelOpcion1.setMaximumSize(new java.awt.Dimension(815, 70));
         jPanelOpcion1.setMinimumSize(new java.awt.Dimension(815, 70));
         jPanelOpcion1.setPreferredSize(new java.awt.Dimension(815, 70));
+        jPanelOpcion1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanelOpcion1MousePressed(evt);
+            }
+        });
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Esta es la primera opcion de una respuesta de prueba");
+        jLabelOpcPregunta1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelOpcPregunta1.setText("Esta es la primera opcion de una respuesta de prueba");
 
         javax.swing.GroupLayout jPanelOpcion1Layout = new javax.swing.GroupLayout(jPanelOpcion1);
         jPanelOpcion1.setLayout(jPanelOpcion1Layout);
@@ -115,25 +136,31 @@ public class Partida extends javax.swing.JInternalFrame {
             jPanelOpcion1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelOpcion1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(jLabelOpcPregunta1)
                 .addContainerGap(509, Short.MAX_VALUE))
         );
         jPanelOpcion1Layout.setVerticalGroup(
             jPanelOpcion1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelOpcion1Layout.createSequentialGroup()
                 .addContainerGap(28, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(jLabelOpcPregunta1)
                 .addGap(26, 26, 26))
         );
 
         jPanelOpcionesPreguntas.add(jPanelOpcion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 750, -1));
 
+        jPanelOpcion2.setBackground(java.awt.Color.lightGray);
         jPanelOpcion2.setMaximumSize(new java.awt.Dimension(815, 70));
         jPanelOpcion2.setMinimumSize(new java.awt.Dimension(815, 70));
         jPanelOpcion2.setPreferredSize(new java.awt.Dimension(815, 70));
+        jPanelOpcion2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanelOpcion2MousePressed(evt);
+            }
+        });
 
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Esta es la segunda opcion de una respuesta de prueba");
+        jLabelOpcPregunta2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelOpcPregunta2.setText("Esta es la segunda opcion de una respuesta de prueba");
 
         javax.swing.GroupLayout jPanelOpcion2Layout = new javax.swing.GroupLayout(jPanelOpcion2);
         jPanelOpcion2.setLayout(jPanelOpcion2Layout);
@@ -141,25 +168,31 @@ public class Partida extends javax.swing.JInternalFrame {
             jPanelOpcion2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelOpcion2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5)
+                .addComponent(jLabelOpcPregunta2)
                 .addContainerGap(503, Short.MAX_VALUE))
         );
         jPanelOpcion2Layout.setVerticalGroup(
             jPanelOpcion2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelOpcion2Layout.createSequentialGroup()
                 .addContainerGap(28, Short.MAX_VALUE)
-                .addComponent(jLabel5)
+                .addComponent(jLabelOpcPregunta2)
                 .addGap(26, 26, 26))
         );
 
         jPanelOpcionesPreguntas.add(jPanelOpcion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 118, 750, -1));
 
+        jPanelOpcion3.setBackground(java.awt.Color.lightGray);
         jPanelOpcion3.setMaximumSize(new java.awt.Dimension(815, 70));
         jPanelOpcion3.setMinimumSize(new java.awt.Dimension(815, 70));
         jPanelOpcion3.setPreferredSize(new java.awt.Dimension(815, 70));
+        jPanelOpcion3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanelOpcion3MousePressed(evt);
+            }
+        });
 
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Esta es la tercera opcion de una respuesta de prueba");
+        jLabelOpcPregunta3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelOpcPregunta3.setText("Esta es la tercera opcion de una respuesta de prueba");
 
         javax.swing.GroupLayout jPanelOpcion3Layout = new javax.swing.GroupLayout(jPanelOpcion3);
         jPanelOpcion3.setLayout(jPanelOpcion3Layout);
@@ -167,25 +200,31 @@ public class Partida extends javax.swing.JInternalFrame {
             jPanelOpcion3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelOpcion3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6)
+                .addComponent(jLabelOpcPregunta3)
                 .addContainerGap(514, Short.MAX_VALUE))
         );
         jPanelOpcion3Layout.setVerticalGroup(
             jPanelOpcion3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelOpcion3Layout.createSequentialGroup()
                 .addContainerGap(28, Short.MAX_VALUE)
-                .addComponent(jLabel6)
+                .addComponent(jLabelOpcPregunta3)
                 .addGap(26, 26, 26))
         );
 
         jPanelOpcionesPreguntas.add(jPanelOpcion3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 206, 750, -1));
 
+        jPanelOpcion4.setBackground(java.awt.Color.lightGray);
         jPanelOpcion4.setMaximumSize(new java.awt.Dimension(815, 70));
         jPanelOpcion4.setMinimumSize(new java.awt.Dimension(815, 70));
         jPanelOpcion4.setPreferredSize(new java.awt.Dimension(815, 70));
+        jPanelOpcion4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanelOpcion4MousePressed(evt);
+            }
+        });
 
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Esta es la ultima opcion de una respuesta de prueba");
+        jLabelOpcPregunta4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelOpcPregunta4.setText("Esta es la ultima opcion de una respuesta de prueba");
 
         javax.swing.GroupLayout jPanelOpcion4Layout = new javax.swing.GroupLayout(jPanelOpcion4);
         jPanelOpcion4.setLayout(jPanelOpcion4Layout);
@@ -193,14 +232,14 @@ public class Partida extends javax.swing.JInternalFrame {
             jPanelOpcion4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelOpcion4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7)
+                .addComponent(jLabelOpcPregunta4)
                 .addContainerGap(518, Short.MAX_VALUE))
         );
         jPanelOpcion4Layout.setVerticalGroup(
             jPanelOpcion4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelOpcion4Layout.createSequentialGroup()
                 .addContainerGap(28, Short.MAX_VALUE)
-                .addComponent(jLabel7)
+                .addComponent(jLabelOpcPregunta4)
                 .addGap(26, 26, 26))
         );
 
@@ -208,6 +247,11 @@ public class Partida extends javax.swing.JInternalFrame {
 
         jButtonResponder.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButtonResponder.setText("RESPONDER SELECCIONADA");
+        jButtonResponder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonResponderActionPerformed(evt);
+            }
+        });
 
         jButtonRetirarse.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButtonRetirarse.setText("RETIRARSE");
@@ -358,6 +402,38 @@ public class Partida extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jButtonRetirarseActionPerformed
 
+    private void jPanelOpcion1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelOpcion1MousePressed
+        seleccionarOpcion(1);
+    }//GEN-LAST:event_jPanelOpcion1MousePressed
+
+    private void jPanelOpcion2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelOpcion2MousePressed
+        seleccionarOpcion(2);
+    }//GEN-LAST:event_jPanelOpcion2MousePressed
+
+    private void jPanelOpcion3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelOpcion3MousePressed
+        seleccionarOpcion(3);
+    }//GEN-LAST:event_jPanelOpcion3MousePressed
+
+    private void jPanelOpcion4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelOpcion4MousePressed
+        seleccionarOpcion(4);
+    }//GEN-LAST:event_jPanelOpcion4MousePressed
+
+    private void jButtonResponderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResponderActionPerformed
+        if (isOpcionSeleccionada() == true) {
+            if(obtenerOpcionSeleccionada().equalsIgnoreCase(preguntaDeRonda.getRespuestaCorrecta())){
+                siguienteRonda();
+                actualizarDatosDePartida();
+                preguntaDeRonda = this.ICPAR.generarPregunta(this.ICCAT.crearCategoriasConPreguntas(), ronda);
+                actualizarOpcionesDePreguntasCategoria(preguntaDeRonda);
+                resetearColores();
+            }else{
+                JOptionPane.showMessageDialog(this, "Respuesta Incorrecta.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una opción.");
+        }
+    }//GEN-LAST:event_jButtonResponderActionPerformed
+
     public void mostrarPreguntas() {
         List<Categoria> test = this.ICCAT.crearCategoriasConPreguntas();
         for (int i = 0; i < test.size(); i++) {
@@ -377,23 +453,123 @@ public class Partida extends javax.swing.JInternalFrame {
         }
     }
 
+    public void seleccionarOpcion(int opc) {
+        Color opcSelectedColor = Color.PINK;
+        Color opcSinSeleccionar = Color.LIGHT_GRAY;
+        if (opc == 1) {
+            this.jPanelOpcion1.setBackground(opcSelectedColor);
+            this.jPanelOpcion2.setBackground(opcSinSeleccionar);
+            this.jPanelOpcion3.setBackground(opcSinSeleccionar);
+            this.jPanelOpcion4.setBackground(opcSinSeleccionar);
+        } else if (opc == 2) {
+            this.jPanelOpcion1.setBackground(opcSinSeleccionar);
+            this.jPanelOpcion2.setBackground(opcSelectedColor);
+            this.jPanelOpcion3.setBackground(opcSinSeleccionar);
+            this.jPanelOpcion4.setBackground(opcSinSeleccionar);
+        } else if (opc == 3) {
+            this.jPanelOpcion1.setBackground(opcSinSeleccionar);
+            this.jPanelOpcion2.setBackground(opcSinSeleccionar);
+            this.jPanelOpcion3.setBackground(opcSelectedColor);
+            this.jPanelOpcion4.setBackground(opcSinSeleccionar);
+        } else if (opc == 4) {
+            this.jPanelOpcion1.setBackground(opcSinSeleccionar);
+            this.jPanelOpcion2.setBackground(opcSinSeleccionar);
+            this.jPanelOpcion3.setBackground(opcSinSeleccionar);
+            this.jPanelOpcion4.setBackground(opcSelectedColor);
+        }
+    }
+
+    public boolean isOpcionSeleccionada() {
+        if (this.jPanelOpcion1.getBackground() == Color.PINK || this.jPanelOpcion2.getBackground() == Color.PINK || this.jPanelOpcion3.getBackground() == Color.PINK || this.jPanelOpcion4.getBackground() == Color.PINK) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public int[] establecerPremios() {
+        int[] premios = new int[5];
+        premios[0] = 100;
+        premios[1] = 300;
+        premios[2] = 500;
+        premios[3] = 1000;
+        premios[4] = 2000;
+        return premios;
+    }
+
+    public void actualizarDatosDePartida() { //Actualiza la ronda y premios.
+        this.jLabelPremioActualNum.setText(Integer.toString(this.premiosPorRonda[this.ronda - 1])); //Actualizo el premio actual
+        this.jLabelNumero.setText(Integer.toString(this.ronda));
+    }
+
+    public void siguienteRonda() {
+        this.ronda++;
+        actualizarDatosDePartida();
+    }
+
+    public void actualizarOpcionesDePreguntasCategoria(Pregunta pregunta) {
+        Random randomGenerator = new Random();
+        int respuestaCorrectaIndex = randomGenerator.nextInt(4);
+        this.jLabelPregunta.setText(pregunta.getPregunta());
+        this.jLabelCategoria.setText(pregunta.getCategoria());
+        if (respuestaCorrectaIndex == 0) {
+            this.jLabelOpcPregunta1.setText(pregunta.getRespuestasIncorrectas().get(0));
+            this.jLabelOpcPregunta2.setText(pregunta.getRespuestasIncorrectas().get(1));
+            this.jLabelOpcPregunta3.setText(pregunta.getRespuestasIncorrectas().get(2));
+            this.jLabelOpcPregunta4.setText(pregunta.getRespuestaCorrecta());
+        } else if (respuestaCorrectaIndex == 1) {
+            this.jLabelOpcPregunta4.setText(pregunta.getRespuestasIncorrectas().get(0));
+            this.jLabelOpcPregunta3.setText(pregunta.getRespuestasIncorrectas().get(1));
+            this.jLabelOpcPregunta1.setText(pregunta.getRespuestasIncorrectas().get(2));
+            this.jLabelOpcPregunta2.setText(pregunta.getRespuestaCorrecta());
+        } else if (respuestaCorrectaIndex == 2) {
+            this.jLabelOpcPregunta2.setText(pregunta.getRespuestasIncorrectas().get(0));
+            this.jLabelOpcPregunta1.setText(pregunta.getRespuestasIncorrectas().get(1));
+            this.jLabelOpcPregunta4.setText(pregunta.getRespuestasIncorrectas().get(2));
+            this.jLabelOpcPregunta3.setText(pregunta.getRespuestaCorrecta());
+        } else if (respuestaCorrectaIndex == 3) {
+            this.jLabelOpcPregunta4.setText(pregunta.getRespuestasIncorrectas().get(0));
+            this.jLabelOpcPregunta3.setText(pregunta.getRespuestasIncorrectas().get(1));
+            this.jLabelOpcPregunta1.setText(pregunta.getRespuestasIncorrectas().get(2));
+            this.jLabelOpcPregunta2.setText(pregunta.getRespuestaCorrecta());
+        }
+    }
+
+    public String obtenerOpcionSeleccionada() {
+        if (this.jPanelOpcion1.getBackground() == Color.PINK) {
+            return this.jLabelOpcPregunta1.getText();
+        } else if (this.jPanelOpcion2.getBackground() == Color.PINK) {
+            return this.jLabelOpcPregunta2.getText();
+        } else if (this.jPanelOpcion3.getBackground() == Color.PINK) {
+            return this.jLabelOpcPregunta3.getText();
+        } else {
+            return this.jLabelOpcPregunta4.getText();
+        }
+    }
+    
+    public void resetearColores(){
+        this.jPanelOpcion1.setBackground(Color.LIGHT_GRAY);
+        this.jPanelOpcion2.setBackground(Color.LIGHT_GRAY);
+        this.jPanelOpcion3.setBackground(Color.LIGHT_GRAY);
+        this.jPanelOpcion4.setBackground(Color.LIGHT_GRAY);
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonResponder;
     private javax.swing.JButton jButtonRetirarse;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelCategoria;
     private javax.swing.JLabel jLabelNumero;
+    private javax.swing.JLabel jLabelOpcPregunta1;
+    private javax.swing.JLabel jLabelOpcPregunta2;
+    private javax.swing.JLabel jLabelOpcPregunta3;
+    private javax.swing.JLabel jLabelOpcPregunta4;
     private javax.swing.JLabel jLabelPregunta;
     private javax.swing.JLabel jLabelPremioActualNum;
     private javax.swing.JLabel jLabelPremioActualTitulo;
     private javax.swing.JLabel jLabelPremioAcumuladoNum;
     private javax.swing.JLabel jLabelPremioAcumuladoTitulo;
-    private javax.swing.JLabel jLabelRondaNumero1;
     private javax.swing.JLabel jLabelRondaTitulo;
-    private javax.swing.JLabel jLabelRondaTitulo1;
     private javax.swing.JPanel jPanelFondo;
     private javax.swing.JPanel jPanelOpcion1;
     private javax.swing.JPanel jPanelOpcion2;
@@ -403,6 +579,5 @@ public class Partida extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanelPreguntaCategoria;
     private javax.swing.JPanel jPanelPremios;
     private javax.swing.JPanel jPanelRondas;
-    private javax.swing.JPanel jPanelRondas1;
     // End of variables declaration//GEN-END:variables
 }
