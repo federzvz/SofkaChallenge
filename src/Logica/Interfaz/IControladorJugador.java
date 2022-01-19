@@ -9,6 +9,6 @@ package Logica.Interfaz;
  *
  * @author Admin
  */
-public class IControladorJugador {
+public interface IControladorJugador {
     
 }
