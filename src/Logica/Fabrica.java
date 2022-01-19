@@ -5,8 +5,12 @@
  */
 package Logica;
 
+import Logica.Controladores.ControladorCategoria;
 import Logica.Controladores.ControladorPartida;
+import Logica.Controladores.ControladorPregunta;
+import Logica.Interfaz.IControladorCategoria;
 import Logica.Interfaz.IControladorPartida;
+import Logica.Interfaz.IControladorPregunta;
 
 /**
  *
@@ -22,9 +26,19 @@ public class Fabrica {
         }
         return instancia;
     }
-    
-    public IControladorPartida getIControladorFuncion() {
+
+    public IControladorPartida getIControladorPartida() {
         IControladorPartida ControladorF = ControladorPartida.getInstance();
         return ControladorF; //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public IControladorPregunta getIControladorPregunta() {
+        IControladorPregunta ControladorP = ControladorPregunta.getInstance();
+        return ControladorP; //To change body of generated methods, choose Tools | Templates.
+    }
+    
+        public IControladorCategoria getIControladorCategoria() {
+        IControladorCategoria ControladorCAT = ControladorCategoria.getInstance();
+        return ControladorCAT; //To change body of generated methods, choose Tools | Templates.
     }
 }

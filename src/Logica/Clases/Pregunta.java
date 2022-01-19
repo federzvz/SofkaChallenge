@@ -5,15 +5,20 @@
  */
 package Logica.Clases;
 
-/**
+import java.util.List;
+
+/*
  *
  * @author Admin
  */
-public class Pregunta {
-    private String pregunta;
+public class Pregunta extends Categoria {
+    private String pregunta, respuestaCorrecta;
+    private List<String> respuestasIncorrectas;
 
-    public Pregunta(String pregunta) {
+    public Pregunta(String pregunta, String respuestaCorrecta, List<String> respuestasIncorrectas) {
         this.pregunta = pregunta;
+        this.respuestaCorrecta = respuestaCorrecta;
+        this.respuestasIncorrectas = respuestasIncorrectas;
     }
 
     public Pregunta() {
@@ -26,5 +31,22 @@ public class Pregunta {
     public void setPregunta(String pregunta) {
         this.pregunta = pregunta;
     }
+
+    public String getRespuestaCorrecta() {
+        return respuestaCorrecta;
+    }
+
+    public List<String> getRespuestasIncorrectas() {
+        return respuestasIncorrectas;
+    }
+
+    public void setRespuestaCorrecta(String respuestaCorrecta) {
+        this.respuestaCorrecta = respuestaCorrecta;
+    }
+
+    public void setRespuestasIncorrectas(List<String> respuestasIncorrectas) {
+        this.respuestasIncorrectas = respuestasIncorrectas;
+    }
+    
     
 }

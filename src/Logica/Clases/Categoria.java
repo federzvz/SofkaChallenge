@@ -5,6 +5,9 @@
  */
 package Logica.Clases;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Admin
@@ -12,6 +15,7 @@ package Logica.Clases;
 public class Categoria {
     private String nombre;
     private int nivelDeComplejidad;
+    private List<Pregunta> preguntas = new ArrayList<>();
 
     public Categoria(String nombre, int nivelDeComplejidad) {
         this.nombre = nombre;
@@ -36,4 +40,15 @@ public class Categoria {
     public void setNivelDeComplejidad(int nivelDeComplejidad) {
         this.nivelDeComplejidad = nivelDeComplejidad;
     }
+
+    public List<Pregunta> getPreguntas() {
+        return preguntas;
+    }
+
+    public void setPreguntas(List<Pregunta> preguntas) {
+        this.preguntas = preguntas;
+    }
+    
+    
+    
 }

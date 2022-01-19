@@ -5,17 +5,24 @@
  */
 package Presentacion;
 
+import Logica.Clases.Categoria;
+import Logica.Clases.Pregunta;
+import Logica.Fabrica;
+import Logica.Interfaz.IControladorCategoria;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Admin
  */
 public class Partida extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form Partida
-     */
+    private IControladorCategoria ICCAT;
+
     public Partida() {
         initComponents();
+        this.ICCAT = Fabrica.getInstance().getIControladorCategoria();
     }
 
     /**
@@ -204,6 +211,11 @@ public class Partida extends javax.swing.JInternalFrame {
 
         jButtonRetirarse.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButtonRetirarse.setText("RETIRARSE");
+        jButtonRetirarse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRetirarseActionPerformed(evt);
+            }
+        });
 
         jPanelRondas.setBackground(new java.awt.Color(0, 64, 96));
 
@@ -341,6 +353,25 @@ public class Partida extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonRetirarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetirarseActionPerformed
+        List<Categoria> test = this.ICCAT.crearCategoriasConPreguntas();
+        for (int i = 0; i < test.size(); i++) {
+            System.out.println(test.get(i).getNivelDeComplejidad());
+            System.out.println(test.get(i).getNombre());
+            List<Pregunta> test2 = new ArrayList<>();
+            test2=test.get(i).getPreguntas();
+            for(int j = 0; j < test2.size(); j ++){
+                System.out.println(test2.get(j).getPregunta());
+                System.out.println(test2.get(j).getRespuestaCorrecta());
+                List<String> test3incorrectas = new ArrayList<>();
+                test3incorrectas=test2.get(j).getRespuestasIncorrectas();
+                for(int h = 0; h < test3incorrectas.size(); h ++){
+                    System.out.println(test3incorrectas.get(h));
+                }
+            }
+        }
+    }//GEN-LAST:event_jButtonRetirarseActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -388,6 +388,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="RETIRARSE"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRetirarseActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanelRondas">
           <Properties>
