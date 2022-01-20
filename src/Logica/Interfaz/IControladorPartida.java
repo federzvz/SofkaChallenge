@@ -15,4 +15,7 @@ import java.util.List;
  */
 public interface IControladorPartida {
     public abstract Pregunta generarPregunta(List<Categoria> categoria, int numeroRonda);
+    public abstract void mostrarPreguntas(List<Categoria> test);
+    public abstract int[] establecerPremios();
+    public abstract void registrarPartida(String nickname, int rondasGanadas, int dineroObtenido);
 }

@@ -7,6 +7,7 @@ package Presentacion;
 
 import Logica.Fabrica;
 import Logica.Interfaz.IControladorJugador;
+import Logica.Interfaz.IControladorPartida;
 import java.awt.Dimension;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -22,7 +23,6 @@ public class Jugador extends javax.swing.JInternalFrame {
     public Jugador() {
         initComponents();
         this.ICJUG = Fabrica.getInstance().getIControladorJugador();
-        
     }
     
     
