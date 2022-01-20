@@ -11,7 +11,10 @@ import Logica.Fabrica;
 import Logica.Interfaz.IControladorCategoria;
 import Logica.Interfaz.IControladorJugador;
 import Logica.Interfaz.IControladorPartida;
+import static Presentacion.Main.jDesktopPane1;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -426,14 +429,18 @@ public class Partida extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRetirarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetirarseActionPerformed
-        if (this.ronda==1) {
-            JOptionPane.showMessageDialog(this, "No puede retirarse en la primera ronda.");
+        if (this.jComboBox1.getItemCount() == 0) {
+            JOptionPane.showMessageDialog(this, "No hay jugadores registrados. Debes crear un perfil en la sección 'Perfil' y volver a intentar.");
         } else {
-            this.ICPAR.registrarPartida(this.jComboBox1.getSelectedItem().toString(), ronda - 1, acumulado);
-            JOptionPane.showMessageDialog(this, "Has abandonado la partida.");
-            this.dispose();
+            if (this.ronda == 1) {
+                JOptionPane.showMessageDialog(this, "No puedes retirarte en la primera ronda.");
+            } else {
+                this.ICPAR.registrarPartida(this.jComboBox1.getSelectedItem().toString(), ronda - 1, acumulado);
+                JOptionPane.showMessageDialog(this, "Has abandonado la partida. Rondas jugadas: "+ Integer.toString(ronda-1) +", te retiras con un acumulado de: "+acumulado);
+                this.dispose();
+                resetearVentana();
+            }
         }
-
     }//GEN-LAST:event_jButtonRetirarseActionPerformed
 
     private void jPanelOpcion1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelOpcion1MousePressed
@@ -469,13 +476,16 @@ public class Partida extends javax.swing.JInternalFrame {
                         resetearColores();
                     } else {// Si la ronda es mayor a 4 significa que se encontraba en la última ronda y acertó, ganó las 5 rondas. -----FINALIZA LA PARTIDA-----
                         this.ICPAR.registrarPartida(nicknameParticipante, ronda, this.premiosPorRonda[0] + this.premiosPorRonda[1] + this.premiosPorRonda[2] + this.premiosPorRonda[3] + this.premiosPorRonda[4]);
-                        JOptionPane.showMessageDialog(this, "Felicitaciones, ganó las 5 rondas.");
+                        JOptionPane.showMessageDialog(this, "Felicitaciones!!! Has logrado vencer 5 rondas por lo has ganado la partida.");
+                        this.dispose();
+                        resetearVentana();
                     }
 
                 } else { //La respuesta que seleccionó es incorrecta. -----FINALIZA LA PARTIDA-----
                     this.ICPAR.registrarPartida(nicknameParticipante, ronda - 1, 0);
                     JOptionPane.showMessageDialog(this, "Respuesta Incorrecta.");
                     this.dispose();
+                    resetearVentana();
                 }
             } else { //No ha seleccionado ninguna opción
                 JOptionPane.showMessageDialog(this, "Debe seleccionar una opción.");
@@ -490,26 +500,45 @@ public class Partida extends javax.swing.JInternalFrame {
     public void seleccionarOpcion(int opc) { //Cambiar color al seleccionar una opción.
         Color opcSelectedColor = Color.PINK;
         Color opcSinSeleccionar = Color.LIGHT_GRAY;
+        Font normal = new Font("sansserif", Font.PLAIN, 12);
+        Font seleccionado = new Font("sansserif", Font.BOLD, 13);
+
         if (opc == 1) {
             this.jPanelOpcion1.setBackground(opcSelectedColor);
             this.jPanelOpcion2.setBackground(opcSinSeleccionar);
             this.jPanelOpcion3.setBackground(opcSinSeleccionar);
             this.jPanelOpcion4.setBackground(opcSinSeleccionar);
+            this.jLabelOpcPregunta1.setFont(seleccionado);
+            this.jLabelOpcPregunta2.setFont(normal);
+            this.jLabelOpcPregunta3.setFont(normal);
+            this.jLabelOpcPregunta4.setFont(normal);
         } else if (opc == 2) {
             this.jPanelOpcion1.setBackground(opcSinSeleccionar);
             this.jPanelOpcion2.setBackground(opcSelectedColor);
             this.jPanelOpcion3.setBackground(opcSinSeleccionar);
             this.jPanelOpcion4.setBackground(opcSinSeleccionar);
+            this.jLabelOpcPregunta1.setFont(normal);
+            this.jLabelOpcPregunta2.setFont(seleccionado);
+            this.jLabelOpcPregunta3.setFont(normal);
+            this.jLabelOpcPregunta4.setFont(normal);
         } else if (opc == 3) {
             this.jPanelOpcion1.setBackground(opcSinSeleccionar);
             this.jPanelOpcion2.setBackground(opcSinSeleccionar);
             this.jPanelOpcion3.setBackground(opcSelectedColor);
             this.jPanelOpcion4.setBackground(opcSinSeleccionar);
+            this.jLabelOpcPregunta1.setFont(normal);
+            this.jLabelOpcPregunta2.setFont(normal);
+            this.jLabelOpcPregunta3.setFont(seleccionado);
+            this.jLabelOpcPregunta4.setFont(normal);
         } else if (opc == 4) {
             this.jPanelOpcion1.setBackground(opcSinSeleccionar);
             this.jPanelOpcion2.setBackground(opcSinSeleccionar);
             this.jPanelOpcion3.setBackground(opcSinSeleccionar);
             this.jPanelOpcion4.setBackground(opcSelectedColor);
+            this.jLabelOpcPregunta1.setFont(normal);
+            this.jLabelOpcPregunta2.setFont(normal);
+            this.jLabelOpcPregunta3.setFont(normal);
+            this.jLabelOpcPregunta4.setFont(seleccionado);
         }
     }
 
@@ -557,8 +586,8 @@ public class Partida extends javax.swing.JInternalFrame {
     public void actualizarOpcionesDePreguntasCategoria(Pregunta pregunta) { //Se distribuyen las opciones de la pregunta generada aleatoriamente de forma semi-aleatoria.
         Random randomGenerator = new Random();
         int respuestaCorrectaIndex = randomGenerator.nextInt(4);
-        this.jLabelPregunta.setText(pregunta.getPregunta());
-        this.jLabelCategoria.setText(pregunta.getCategoria());
+        this.jLabelPregunta.setText("PREGUNTA: " + pregunta.getPregunta());
+        this.jLabelCategoria.setText("CATEGORÍA: " + pregunta.getCategoria());
         if (respuestaCorrectaIndex == 0) {
             this.jLabelOpcPregunta1.setText(pregunta.getRespuestasIncorrectas().get(0));
             this.jLabelOpcPregunta2.setText(pregunta.getRespuestasIncorrectas().get(1));
@@ -595,10 +624,15 @@ public class Partida extends javax.swing.JInternalFrame {
     }
 
     public void resetearColores() { //Se restauran los colores de las opciones por default.
+        Font normal = new Font("sansserif", Font.PLAIN, 12);
         this.jPanelOpcion1.setBackground(Color.LIGHT_GRAY);
         this.jPanelOpcion2.setBackground(Color.LIGHT_GRAY);
         this.jPanelOpcion3.setBackground(Color.LIGHT_GRAY);
         this.jPanelOpcion4.setBackground(Color.LIGHT_GRAY);
+        this.jLabelOpcPregunta1.setFont(normal);
+        this.jLabelOpcPregunta2.setFont(normal);
+        this.jLabelOpcPregunta3.setFont(normal);
+        this.jLabelOpcPregunta4.setFont(normal);
     }
 
     public void rellenarComboBoxJugadores() {
@@ -608,6 +642,16 @@ public class Partida extends javax.swing.JInternalFrame {
         }
     }
 
+    public void resetearVentana() {
+        Presentacion.Main.jDesktopPane1.removeAll();
+        Partida ventana = new Partida();
+        Presentacion.Main.jDesktopPane1.add(ventana);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension jInternalFrameSize = ventana.getSize();
+        ventana.setLocation((desktopSize.width - jInternalFrameSize.width) / 2,
+                (desktopSize.height - jInternalFrameSize.height) / 2);
+        ventana.setVisible(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonResponder;

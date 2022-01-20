@@ -20,9 +20,9 @@ public class ControladorCategoria implements IControladorCategoria {
     private static ControladorCategoria instancia;
 
     public ControladorCategoria() {
-    
+
     }
-    
+
     public static ControladorCategoria getInstance() {
         if (instancia == null) {
             instancia = new ControladorCategoria();
@@ -63,7 +63,7 @@ public class ControladorCategoria implements IControladorCategoria {
 
         preguntaAux = new Pregunta(); //Reseteamos la variable
         respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
-        
+
         preguntaAux.setPregunta("¿Cuál de los siguientes equipos cuenta con más Libertadores?");
         respuestasIncorrectas.add("Peñarol");
         respuestasIncorrectas.add("Boca");
@@ -75,10 +75,10 @@ public class ControladorCategoria implements IControladorCategoria {
 
         preguntaAux = new Pregunta(); //Reseteamos la variable
         respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
-        
+
         preguntaAux.setPregunta("¿Cuál de los siguientes equipos posee más UEFA Champions League?");
         respuestasIncorrectas.add("Milan");
-        respuestasIncorrectas.add("Bayern Münche");
+        respuestasIncorrectas.add("Bayern München");
         respuestasIncorrectas.add("Liverpool");
         respuestaCorrecta = "Real Madrid";
         preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
@@ -87,7 +87,7 @@ public class ControladorCategoria implements IControladorCategoria {
 
         preguntaAux = new Pregunta(); //Reseteamos la variable
         respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
-        
+
         preguntaAux.setPregunta("¿Qué selección ganó el mundial de Brasil 2014?");
         respuestasIncorrectas.add("Francia");
         respuestasIncorrectas.add("España");
@@ -104,9 +104,9 @@ public class ControladorCategoria implements IControladorCategoria {
         categorias.add(categoriaAux); //Añadimos la categoría con sus respectivas preguntas a una lista del mismo tipo
         categoriaAux = new Categoria(); //Reseteamos la instancia auxiliar
         preguntas = new ArrayList<>();
-        categoriaAux.setNombre("Conocimiento General I"); 
+        categoriaAux.setNombre("Conocimiento General I");
         categoriaAux.setNivelDeComplejidad(1);
-        
+
         preguntaAux.setPregunta("¿Cada cuántos años tenemos un año bisiesto?");
         respuestasIncorrectas.add("Cada 2 años");
         respuestasIncorrectas.add("Cada 3 años");
@@ -115,10 +115,10 @@ public class ControladorCategoria implements IControladorCategoria {
         preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
         preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
         preguntas.add(preguntaAux);
-        
+
         preguntaAux = new Pregunta(); //Reseteamos la variable
         respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
-        
+
         preguntaAux.setPregunta("¿Quién fue Cleopatra?");
         respuestasIncorrectas.add("Una gladiadora de la antigua Roma");
         respuestasIncorrectas.add("Primera reina de Inglaterra");
@@ -127,10 +127,10 @@ public class ControladorCategoria implements IControladorCategoria {
         preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
         preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
         preguntas.add(preguntaAux);
-        
+
         preguntaAux = new Pregunta(); //Reseteamos la variable
         respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
-        
+
         preguntaAux.setPregunta("¿Cómo se llama al sonido que produce la oveja?");
         respuestasIncorrectas.add("maullar");
         respuestasIncorrectas.add("ladrar");
@@ -139,10 +139,10 @@ public class ControladorCategoria implements IControladorCategoria {
         preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
         preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
         preguntas.add(preguntaAux);
-        
+
         preguntaAux = new Pregunta(); //Reseteamos la variable
         respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
-        
+
         preguntaAux.setPregunta("¿Cuáles son los colores primarios?");
         respuestasIncorrectas.add("rojo, azul y verde");
         respuestasIncorrectas.add("rojo, amarillo y verde");
@@ -151,10 +151,10 @@ public class ControladorCategoria implements IControladorCategoria {
         preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
         preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
         preguntas.add(preguntaAux);
-        
+
         preguntaAux = new Pregunta(); //Reseteamos la variable
         respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
-        
+
         preguntaAux.setPregunta("¿Cuál es el hueso más largo del ser humano?");
         respuestasIncorrectas.add("Rótula");
         respuestasIncorrectas.add("Tibia");
@@ -163,17 +163,17 @@ public class ControladorCategoria implements IControladorCategoria {
         preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
         preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
         preguntas.add(preguntaAux);
-        
+
         preguntaAux = new Pregunta(); //Reseteamos la variable
         respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
-        
+
         categoriaAux.setPreguntas(preguntas); //Añadimos las preguntas creadas a la categoría
         categorias.add(categoriaAux); //Añadimos la categoría con sus respectivas preguntas a una lista del mismo tipo
         categoriaAux = new Categoria(); //Reseteamos la instancia auxiliar
         preguntas = new ArrayList<>();
-        categoriaAux.setNombre("Conocimiento General II"); 
+        categoriaAux.setNombre("Conocimiento General II");
         categoriaAux.setNivelDeComplejidad(2);
-        
+
         preguntaAux.setPregunta("¿Qué significa que dos palabras sean sinónimos?");
         respuestasIncorrectas.add("Cuando dos palabras se leen igual de atrás para adelante");
         respuestasIncorrectas.add("Cuando ambas palabras tienen las mismas sílabas");
@@ -182,10 +182,10 @@ public class ControladorCategoria implements IControladorCategoria {
         preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
         preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
         preguntas.add(preguntaAux);
-        
+
         preguntaAux = new Pregunta(); //Reseteamos la variable
         respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
-        
+
         preguntaAux.setPregunta("¿Cuánto suman los ángulos de un triángulo?");
         respuestasIncorrectas.add("190");
         respuestasIncorrectas.add("185");
@@ -194,10 +194,10 @@ public class ControladorCategoria implements IControladorCategoria {
         preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
         preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
         preguntas.add(preguntaAux);
-        
+
         preguntaAux = new Pregunta(); //Reseteamos la variable
         respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
-        
+
         preguntaAux.setPregunta("¿Cuántos kilos son una tonelada?");
         respuestasIncorrectas.add("10000");
         respuestasIncorrectas.add("100");
@@ -206,10 +206,10 @@ public class ControladorCategoria implements IControladorCategoria {
         preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
         preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
         preguntas.add(preguntaAux);
-        
+
         preguntaAux = new Pregunta(); //Reseteamos la variable
         respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
-        
+
         preguntaAux.setPregunta("¿Cuánto suman los ángulos de un cuadrado?");
         respuestasIncorrectas.add("380");
         respuestasIncorrectas.add("350");
@@ -218,10 +218,10 @@ public class ControladorCategoria implements IControladorCategoria {
         preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
         preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
         preguntas.add(preguntaAux);
-        
+
         preguntaAux = new Pregunta(); //Reseteamos la variable
         respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
-        
+
         preguntaAux.setPregunta("¿Quién escribió La Odisea?");
         respuestasIncorrectas.add("Este poema de 24 cantos fue escrito por Copernico");
         respuestasIncorrectas.add("Este poema de 24 cantos fue escrito por Spartaco");
@@ -230,17 +230,17 @@ public class ControladorCategoria implements IControladorCategoria {
         preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
         preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
         preguntas.add(preguntaAux);
-        
+
         preguntaAux = new Pregunta(); //Reseteamos la variable
         respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
-        
+
         categoriaAux.setPreguntas(preguntas); //Añadimos las preguntas creadas a la categoría
         categorias.add(categoriaAux); //Añadimos la categoría con sus respectivas preguntas a una lista del mismo tipo
         categoriaAux = new Categoria(); //Reseteamos la instancia auxiliar
         preguntas = new ArrayList<>();
-        categoriaAux.setNombre("Conocimiento General III"); 
+        categoriaAux.setNombre("Conocimiento General III");
         categoriaAux.setNivelDeComplejidad(3);
-        
+
         preguntaAux.setPregunta("¿Cuáles son los tipos de sabores primarios?");
         respuestasIncorrectas.add("dulce, ácido y salado.");
         respuestasIncorrectas.add("dulce, amargo y ácido");
@@ -249,10 +249,10 @@ public class ControladorCategoria implements IControladorCategoria {
         preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
         preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
         preguntas.add(preguntaAux);
-        
+
         preguntaAux = new Pregunta(); //Reseteamos la variable
         respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
-        
+
         preguntaAux.setPregunta("¿Cuál es el río más largo del mundo?");
         respuestasIncorrectas.add("Mississippi");
         respuestasIncorrectas.add("Yangtse");
@@ -261,10 +261,10 @@ public class ControladorCategoria implements IControladorCategoria {
         preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
         preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
         preguntas.add(preguntaAux);
-        
+
         preguntaAux = new Pregunta(); //Reseteamos la variable
         respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
-        
+
         preguntaAux.setPregunta("¿Cómo se llama la Reina del Reino Unido?");
         respuestasIncorrectas.add("Isabel III");
         respuestasIncorrectas.add("Isabel IV");
@@ -273,10 +273,10 @@ public class ControladorCategoria implements IControladorCategoria {
         preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
         preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
         preguntas.add(preguntaAux);
-        
+
         preguntaAux = new Pregunta(); //Reseteamos la variable
         respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
-        
+
         preguntaAux.setPregunta("¿Qué cantidad de huesos hay en el cuerpo humano?");
         respuestasIncorrectas.add("200");
         respuestasIncorrectas.add("300");
@@ -285,10 +285,10 @@ public class ControladorCategoria implements IControladorCategoria {
         preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
         preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
         preguntas.add(preguntaAux);
-        
+
         preguntaAux = new Pregunta(); //Reseteamos la variable
         respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
-        
+
         preguntaAux.setPregunta("¿Cuándo acabó la II Guerra Mundial?");
         respuestasIncorrectas.add("1940");
         respuestasIncorrectas.add("1943");
@@ -297,17 +297,17 @@ public class ControladorCategoria implements IControladorCategoria {
         preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
         preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
         preguntas.add(preguntaAux);
-        
+
         preguntaAux = new Pregunta(); //Reseteamos la variable
         respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
-        
+
         categoriaAux.setPreguntas(preguntas); //Añadimos las preguntas creadas a la categoría
         categorias.add(categoriaAux); //Añadimos la categoría con sus respectivas preguntas a una lista del mismo tipo
         categoriaAux = new Categoria(); //Reseteamos la instancia auxiliar
         preguntas = new ArrayList<>();
-        categoriaAux.setNombre("Conocimiento General IV"); 
+        categoriaAux.setNombre("Conocimiento General IV");
         categoriaAux.setNivelDeComplejidad(4);
-        
+
         preguntaAux.setPregunta("¿Qué producto cultiva más Guatemala?");
         respuestasIncorrectas.add("Trigo");
         respuestasIncorrectas.add("Arroz");
@@ -316,10 +316,10 @@ public class ControladorCategoria implements IControladorCategoria {
         preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
         preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
         preguntas.add(preguntaAux);
-        
+
         preguntaAux = new Pregunta(); //Reseteamos la variable
         respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
-        
+
         preguntaAux.setPregunta("¿Qué año llegó Cristóbal Colón a América?");
         respuestasIncorrectas.add("1455");
         respuestasIncorrectas.add("1469");
@@ -328,10 +328,10 @@ public class ControladorCategoria implements IControladorCategoria {
         preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
         preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
         preguntas.add(preguntaAux);
-        
+
         preguntaAux = new Pregunta(); //Reseteamos la variable
         respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
-        
+
         preguntaAux.setPregunta("¿En qué lugar del cuerpo se produce la insulina?");
         respuestasIncorrectas.add("Hígado");
         respuestasIncorrectas.add("Riñones");
@@ -340,10 +340,10 @@ public class ControladorCategoria implements IControladorCategoria {
         preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
         preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
         preguntas.add(preguntaAux);
-        
+
         preguntaAux = new Pregunta(); //Reseteamos la variable
         respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
-        
+
         preguntaAux.setPregunta("¿Cuál fue el primer metal que empleó el hombre?");
         respuestasIncorrectas.add("Acero");
         respuestasIncorrectas.add("Bronce");
@@ -352,10 +352,10 @@ public class ControladorCategoria implements IControladorCategoria {
         preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
         preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
         preguntas.add(preguntaAux);
-        
+
         preguntaAux = new Pregunta(); //Reseteamos la variable
         respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
-        
+
         preguntaAux.setPregunta("¿Cual es el metal más caro del mundo?");
         respuestasIncorrectas.add("Oro");
         respuestasIncorrectas.add("Platino");
@@ -364,17 +364,17 @@ public class ControladorCategoria implements IControladorCategoria {
         preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
         preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
         preguntas.add(preguntaAux);
-        
+
         preguntaAux = new Pregunta(); //Reseteamos la variable
         respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
-        
+
         categoriaAux.setPreguntas(preguntas); //Añadimos las preguntas creadas a la categoría
         categorias.add(categoriaAux); //Añadimos la categoría con sus respectivas preguntas a una lista del mismo tipo
         categoriaAux = new Categoria(); //Reseteamos la instancia auxiliar
         preguntas = new ArrayList<>();
-        categoriaAux.setNombre("Química"); 
-        categoriaAux.setNivelDeComplejidad(5);
-        
+        categoriaAux.setNombre("Química");
+        categoriaAux.setNivelDeComplejidad(4);
+
         preguntaAux.setPregunta("¿Cuál es el elemento químico con menor peso atómico?");
         respuestasIncorrectas.add("Helio");
         respuestasIncorrectas.add("Fosfato");
@@ -383,10 +383,10 @@ public class ControladorCategoria implements IControladorCategoria {
         preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
         preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
         preguntas.add(preguntaAux);
-        
+
         preguntaAux = new Pregunta(); //Reseteamos la variable
         respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
-        
+
         preguntaAux.setPregunta("¿El hielo es más denso o menos denso que el agua líquida?");
         respuestasIncorrectas.add("Es mas denso, por eso flota");
         respuestasIncorrectas.add("Tienen misma densidad, por eso flota");
@@ -395,10 +395,10 @@ public class ControladorCategoria implements IControladorCategoria {
         preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
         preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
         preguntas.add(preguntaAux);
-        
+
         preguntaAux = new Pregunta(); //Reseteamos la variable
         respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
-        
+
         preguntaAux.setPregunta("¿Cuál es el símbolo químico de la Plata?");
         respuestasIncorrectas.add("Pl");
         respuestasIncorrectas.add("P");
@@ -407,10 +407,10 @@ public class ControladorCategoria implements IControladorCategoria {
         preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
         preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
         preguntas.add(preguntaAux);
-        
+
         preguntaAux = new Pregunta(); //Reseteamos la variable
         respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
-        
+
         preguntaAux.setPregunta("¿Cómo se llaman los átomos que poseen carga positiva?");
         respuestasIncorrectas.add("Aniones");
         respuestasIncorrectas.add("Protones");
@@ -419,10 +419,10 @@ public class ControladorCategoria implements IControladorCategoria {
         preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
         preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
         preguntas.add(preguntaAux);
-        
+
         preguntaAux = new Pregunta(); //Reseteamos la variable
         respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
-        
+
         preguntaAux.setPregunta("¿Qué partículas subatómicas tienen una masa aproximada de 1?");
         respuestasIncorrectas.add("Solo los protones");
         respuestasIncorrectas.add("Solo los neutrones");
@@ -431,13 +431,156 @@ public class ControladorCategoria implements IControladorCategoria {
         preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
         preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
         preguntas.add(preguntaAux);
-        
+
         preguntaAux = new Pregunta(); //Reseteamos la variable
         respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
         categoriaAux.setPreguntas(preguntas); //Añadimos las preguntas creadas a la categoría
         categorias.add(categoriaAux); //Añadimos la categoría con sus respectivas preguntas a una lista del mismo tipo
         
+        /*-----INICIO DE ESTRUCTURA PARA AÑADIR CATEGIRÍA Y SUS PREGUNTAS -----*/
+        categoriaAux = new Categoria(); //Reseteamos la instancia auxiliar
+        preguntas = new ArrayList<>();
+        categoriaAux.setNombre("Preguntas Capciosas");
+        categoriaAux.setNivelDeComplejidad(5);
+
+        preguntaAux.setPregunta("¿De qué están hechos los pinceles de Pelo de Camello?");
+        respuestasIncorrectas.add("Pelo de ciervo");
+        respuestasIncorrectas.add("Pelo de nutria");
+        respuestasIncorrectas.add("Pelo de camello");
+        respuestaCorrecta = "Pelo de ardilla";
+        preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
+        preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
+        preguntas.add(preguntaAux);
+
+        preguntaAux = new Pregunta(); //Reseteamos la variable
+        respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
         
+        preguntaAux.setPregunta("¿Cuánto duró la famosa Guerra de los 100 años?");
+        respuestasIncorrectas.add("101 años");
+        respuestasIncorrectas.add("55 años");
+        respuestasIncorrectas.add("100 años");
+        respuestaCorrecta = "116 años";
+        preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
+        preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
+        preguntas.add(preguntaAux);
+
+        preguntaAux = new Pregunta(); //Reseteamos la variable
+        respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
+        
+        preguntaAux.setPregunta("¿De qué color son las Cajas Negras de los aviones?");
+        respuestasIncorrectas.add("azules");
+        respuestasIncorrectas.add("amarillas");
+        respuestasIncorrectas.add("negras");
+        respuestaCorrecta = "naranjas";
+        preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
+        preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
+        preguntas.add(preguntaAux);
+
+        preguntaAux = new Pregunta(); //Reseteamos la variable
+        respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
+        
+        preguntaAux.setPregunta("Antes de que el Monte Everest fuera descubierto, ¿cuál era la montaña más alta del mundo?");
+        respuestasIncorrectas.add("Kanchenjunga");
+        respuestasIncorrectas.add("Lhotse");
+        respuestasIncorrectas.add("Makalu");
+        respuestaCorrecta = "Everest";
+        preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
+        preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
+        preguntas.add(preguntaAux);
+
+        preguntaAux = new Pregunta(); //Reseteamos la variable
+        respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
+        
+        preguntaAux.setPregunta("Algunos meses tienen 31 días, otros tienen 30 días. ¿Cuántos tienen 28 días?");
+        respuestasIncorrectas.add("Febrero no siendo año bisiesto.");
+        respuestasIncorrectas.add("Febreo siendo año bisiesto.");
+        respuestasIncorrectas.add("Febrero siendo y no siendo año bisiesto.");
+        respuestaCorrecta = "Todos";
+        preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
+        preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
+        preguntas.add(preguntaAux);
+
+        preguntaAux = new Pregunta(); //Reseteamos la variable
+        respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
+        
+        
+
+        categoriaAux.setPreguntas(preguntas); //Añadimos las preguntas creadas a la categoría
+        categorias.add(categoriaAux); //Añadimos la categoría con sus respectivas preguntas a una lista del mismo tipo
+        /*-----FIN DE ESTRUCTURA PARA AÑADIR CATEGIRÍA Y SUS PREGUNTAS -----*/
+        
+        /*-----INICIO DE ESTRUCTURA PARA AÑADIR CATEGIRÍA Y SUS PREGUNTAS -----*/
+        categoriaAux = new Categoria(); //Reseteamos la instancia auxiliar
+        preguntas = new ArrayList<>();
+        categoriaAux.setNombre("Geografía");
+        categoriaAux.setNivelDeComplejidad(2);
+
+        preguntaAux.setPregunta("¿Cuál es la capital de Turquía?");
+        respuestasIncorrectas.add("Damasco");
+        respuestasIncorrectas.add("Belgrado");
+        respuestasIncorrectas.add("Bohur");
+        respuestaCorrecta = "Ankara";
+        preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
+        preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
+        preguntas.add(preguntaAux);
+
+        preguntaAux = new Pregunta(); //Reseteamos la variable
+        respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
+        
+        preguntaAux.setPregunta("¿Cuál es el estado más grande de los Estados Unidos?");
+        respuestasIncorrectas.add("California");
+        respuestasIncorrectas.add("Wshington");
+        respuestasIncorrectas.add("Texas");
+        respuestaCorrecta = "Alaska";
+        preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
+        preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
+        preguntas.add(preguntaAux);
+
+        preguntaAux = new Pregunta(); //Reseteamos la variable
+        respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
+        
+        preguntaAux.setPregunta("¿Cuál es el río más largo de Europa?");
+        respuestasIncorrectas.add("Nilo");
+        respuestasIncorrectas.add("Amazonas");
+        respuestasIncorrectas.add("Canal estrecho de Versovia");
+        respuestaCorrecta = "Volga";
+        preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
+        preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
+        preguntas.add(preguntaAux);
+
+        preguntaAux = new Pregunta(); //Reseteamos la variable
+        respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
+        
+        preguntaAux.setPregunta("¿Cuál es el segundo país más grande de Europa después de Rusia?");
+        respuestasIncorrectas.add("Inglaterra");
+        respuestasIncorrectas.add("Portugal");
+        respuestasIncorrectas.add("España");
+        respuestaCorrecta = "Francia";
+        preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
+        preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
+        preguntas.add(preguntaAux);
+
+        preguntaAux = new Pregunta(); //Reseteamos la variable
+        respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
+        
+        preguntaAux.setPregunta("¿Cuál es el país más pequeño del mundo?");
+        respuestasIncorrectas.add("Uruguay");
+        respuestasIncorrectas.add("Islas Francesas");
+        respuestasIncorrectas.add("Haití");
+        respuestaCorrecta = "Vaticano";
+        preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
+        preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
+        preguntas.add(preguntaAux);
+
+        preguntaAux = new Pregunta(); //Reseteamos la variable
+        respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
+        
+        
+
+        categoriaAux.setPreguntas(preguntas); //Añadimos las preguntas creadas a la categoría
+        categorias.add(categoriaAux); //Añadimos la categoría con sus respectivas preguntas a una lista del mismo tipo
+        /*-----FIN DE ESTRUCTURA PARA AÑADIR CATEGIRÍA Y SUS PREGUNTAS -----*/
+
         return categorias;
     }
 }

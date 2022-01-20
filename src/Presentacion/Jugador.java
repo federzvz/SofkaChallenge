@@ -320,10 +320,10 @@ public class Jugador extends javax.swing.JInternalFrame {
 
     private void jButtonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearActionPerformed
         if (this.ICJUG.ingresarJugador(this.jTextFieldNickname.getText())) {
-            JOptionPane.showMessageDialog(this, "Jugador agregado con éxito.");
+            JOptionPane.showMessageDialog(this, "El jugador ha sido creado con éxito.");
             jFrameCrearJugador.dispose();
         } else {
-            JOptionPane.showMessageDialog(this, "ERROR: Es posible que el nickname ingresado ya exista.");
+            JOptionPane.showMessageDialog(this, "ERROR: El nickname ingresado ya existe en el sistema, intenta con otro nickname.");
         }
     }//GEN-LAST:event_jButtonCrearActionPerformed
 
