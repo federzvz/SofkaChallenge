@@ -38,4 +38,8 @@ public class ControladorJugador implements IControladorJugador {
     public List<String> obtenerNicknamesJugadores(){
         return this.servicioJugador.obtenerNicknamesJugadores();
     }
+    
+    public List<Logica.Clases.Jugador> obtenerJugadores() {
+        return this.servicioJugador.obtenerJugadores();
+    }
 }

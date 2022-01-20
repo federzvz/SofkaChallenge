@@ -14,4 +14,5 @@ import java.util.List;
 public interface IControladorJugador {
     public abstract boolean ingresarJugador(String nickname);
     public abstract List<String> obtenerNicknamesJugadores();
+    public abstract List<Logica.Clases.Jugador> obtenerJugadores();
 }

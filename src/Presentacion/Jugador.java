@@ -19,13 +19,14 @@ import javax.swing.JOptionPane;
 public class Jugador extends javax.swing.JInternalFrame {
 
     private IControladorJugador ICJUG;
-    private List<String> Jugadores;
+    private List<Logica.Clases.Jugador> jugadores;
+
     public Jugador() {
         initComponents();
         this.ICJUG = Fabrica.getInstance().getIControladorJugador();
+        this.jugadores = this.ICJUG.obtenerJugadores();
+        rellenarComboBoxNicknameJugadores();
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,14 +48,18 @@ public class Jugador extends javax.swing.JInternalFrame {
         jLabelSeleccionarPerfil = new javax.swing.JLabel();
         jButtonCrearPerfil = new javax.swing.JButton();
         jLabelNickname = new javax.swing.JLabel();
-        jLabelPartidasJugadas = new javax.swing.JLabel();
+        jLabelPartidasGanadas = new javax.swing.JLabel();
         jLabelDineroObtenido = new javax.swing.JLabel();
         jLabelUserNickname = new javax.swing.JLabel();
-        jLabelUserPartidasJugadas = new javax.swing.JLabel();
+        jLabelUserPartidasGanadas = new javax.swing.JLabel();
         jLabelUserDineroObtenido = new javax.swing.JLabel();
         jLabelDineroObtenido1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabelPartidasJugadas = new javax.swing.JLabel();
+        jLabelUserPartidasJugadas = new javax.swing.JLabel();
+        jLabelAcertadas = new javax.swing.JLabel();
+        jLabelUserAcertadas = new javax.swing.JLabel();
 
         jFrameCrearJugador.setTitle("Añadir Jugador");
         jFrameCrearJugador.setMaximumSize(new java.awt.Dimension(400, 150));
@@ -128,6 +133,11 @@ public class Jugador extends javax.swing.JInternalFrame {
 
         jPanelSobreFondo.setBackground(new java.awt.Color(0, 73, 110));
 
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -150,9 +160,9 @@ public class Jugador extends javax.swing.JInternalFrame {
         jLabelNickname.setForeground(new java.awt.Color(255, 255, 255));
         jLabelNickname.setText("Nickname: ");
 
-        jLabelPartidasJugadas.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabelPartidasJugadas.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelPartidasJugadas.setText("Partidas Jugadas: ");
+        jLabelPartidasGanadas.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelPartidasGanadas.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPartidasGanadas.setText("Partidas Ganadas: ");
 
         jLabelDineroObtenido.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabelDineroObtenido.setForeground(new java.awt.Color(255, 255, 255));
@@ -163,10 +173,10 @@ public class Jugador extends javax.swing.JInternalFrame {
         jLabelUserNickname.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabelUserNickname.setText("Invitado");
 
-        jLabelUserPartidasJugadas.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabelUserPartidasJugadas.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelUserPartidasJugadas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabelUserPartidasJugadas.setText("0");
+        jLabelUserPartidasGanadas.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelUserPartidasGanadas.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelUserPartidasGanadas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabelUserPartidasGanadas.setText("0");
 
         jLabelUserDineroObtenido.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabelUserDineroObtenido.setForeground(new java.awt.Color(255, 255, 255));
@@ -188,6 +198,24 @@ public class Jugador extends javax.swing.JInternalFrame {
         jTable1.setToolTipText("");
         jScrollPane1.setViewportView(jTable1);
 
+        jLabelPartidasJugadas.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelPartidasJugadas.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPartidasJugadas.setText("Partidas Jugadas");
+
+        jLabelUserPartidasJugadas.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelUserPartidasJugadas.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelUserPartidasJugadas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabelUserPartidasJugadas.setText("0");
+
+        jLabelAcertadas.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelAcertadas.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelAcertadas.setText("Respuestas Acertadas");
+
+        jLabelUserAcertadas.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelUserAcertadas.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelUserAcertadas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabelUserAcertadas.setText("0");
+
         javax.swing.GroupLayout jPanelSobreFondoLayout = new javax.swing.GroupLayout(jPanelSobreFondo);
         jPanelSobreFondo.setLayout(jPanelSobreFondoLayout);
         jPanelSobreFondoLayout.setHorizontalGroup(
@@ -195,23 +223,6 @@ public class Jugador extends javax.swing.JInternalFrame {
             .addGroup(jPanelSobreFondoLayout.createSequentialGroup()
                 .addGap(74, 74, 74)
                 .addGroup(jPanelSobreFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelSobreFondoLayout.createSequentialGroup()
-                        .addComponent(jLabelNickname)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelUserNickname)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanelSobreFondoLayout.createSequentialGroup()
-                        .addGroup(jPanelSobreFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelDineroObtenido1)
-                            .addGroup(jPanelSobreFondoLayout.createSequentialGroup()
-                                .addComponent(jLabelDineroObtenido)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabelUserDineroObtenido))
-                            .addGroup(jPanelSobreFondoLayout.createSequentialGroup()
-                                .addComponent(jLabelPartidasJugadas)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabelUserPartidasJugadas)))
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSobreFondoLayout.createSequentialGroup()
                         .addGroup(jPanelSobreFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,7 +232,31 @@ public class Jugador extends javax.swing.JInternalFrame {
                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 287, Short.MAX_VALUE)
                                 .addComponent(jButtonCrearPerfil)))
-                        .addGap(81, 81, 81))))
+                        .addGap(81, 81, 81))
+                    .addGroup(jPanelSobreFondoLayout.createSequentialGroup()
+                        .addGroup(jPanelSobreFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelSobreFondoLayout.createSequentialGroup()
+                                .addComponent(jLabelDineroObtenido)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelUserDineroObtenido))
+                            .addGroup(jPanelSobreFondoLayout.createSequentialGroup()
+                                .addComponent(jLabelNickname)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelUserNickname))
+                            .addGroup(jPanelSobreFondoLayout.createSequentialGroup()
+                                .addComponent(jLabelPartidasJugadas)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelUserPartidasJugadas))
+                            .addGroup(jPanelSobreFondoLayout.createSequentialGroup()
+                                .addComponent(jLabelAcertadas)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelUserAcertadas))
+                            .addGroup(jPanelSobreFondoLayout.createSequentialGroup()
+                                .addComponent(jLabelPartidasGanadas)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelUserPartidasGanadas))
+                            .addComponent(jLabelDineroObtenido1))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanelSobreFondoLayout.setVerticalGroup(
             jPanelSobreFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,19 +266,27 @@ public class Jugador extends javax.swing.JInternalFrame {
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelSeleccionarPerfil)
                     .addComponent(jButtonCrearPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58)
+                .addGap(18, 18, 18)
                 .addGroup(jPanelSobreFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelNickname)
                     .addComponent(jLabelUserNickname))
-                .addGap(18, 18, 18)
+                .addGap(7, 7, 7)
                 .addGroup(jPanelSobreFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelPartidasJugadas)
                     .addComponent(jLabelUserPartidasJugadas))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSobreFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelPartidasGanadas)
+                    .addComponent(jLabelUserPartidasGanadas))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSobreFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelAcertadas)
+                    .addComponent(jLabelUserAcertadas))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelSobreFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelDineroObtenido)
                     .addComponent(jLabelUserDineroObtenido))
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
                 .addComponent(jLabelDineroObtenido1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -264,35 +307,52 @@ public class Jugador extends javax.swing.JInternalFrame {
     private void jButtonCrearPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearPerfilActionPerformed
         Dimension desktopSize = Main.jDesktopPane1.getSize();
         Dimension jInternalFrameSize = jFrameCrearJugador.getSize();
-        jFrameCrearJugador.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
-        (desktopSize.height- jInternalFrameSize.height)/2);
+        jFrameCrearJugador.setLocation((desktopSize.width - jInternalFrameSize.width) / 2,
+                (desktopSize.height - jInternalFrameSize.height) / 2);
         jFrameCrearJugador.setVisible(true);
         jFrameCrearJugador.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButtonCrearPerfilActionPerformed
 
     private void jButtonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearActionPerformed
-        if(this.ICJUG.ingresarJugador(this.jTextFieldNickname.getText())){
+        if (this.ICJUG.ingresarJugador(this.jTextFieldNickname.getText())) {
             JOptionPane.showMessageDialog(this, "Jugador agregado con éxito.");
             jFrameCrearJugador.dispose();
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "ERROR: Es posible que el nickname ingresado ya exista.");
         }
     }//GEN-LAST:event_jButtonCrearActionPerformed
 
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        this.jLabelUserNickname.setText(this.jugadores.get(this.jComboBox1.getSelectedIndex()).getNickname());
+        this.jLabelUserDineroObtenido.setText(Integer.toString(this.jugadores.get(this.jComboBox1.getSelectedIndex()).getDineroObtenido()));
+        this.jLabelUserPartidasGanadas.setText(Integer.toString(this.jugadores.get(this.jComboBox1.getSelectedIndex()).getPartidasGanadas()));
+        this.jLabelUserAcertadas.setText(Integer.toString(this.jugadores.get(this.jComboBox1.getSelectedIndex()).getRespuestasAcertadas()));
+        this.jLabelUserPartidasJugadas.setText(Integer.toString(this.jugadores.get(this.jComboBox1.getSelectedIndex()).getPartidasJugadas()));
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
+
+    public void rellenarComboBoxNicknameJugadores() {
+        for (int i = 0; i < this.jugadores.size(); i++) {
+            this.jComboBox1.addItem(this.jugadores.get(i).getNickname());
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCrear;
     private javax.swing.JButton jButtonCrearPerfil;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JFrame jFrameCrearJugador;
+    private javax.swing.JLabel jLabelAcertadas;
     private javax.swing.JLabel jLabelCrearJugadorNombre;
     private javax.swing.JLabel jLabelDineroObtenido;
     private javax.swing.JLabel jLabelDineroObtenido1;
     private javax.swing.JLabel jLabelNickname;
+    private javax.swing.JLabel jLabelPartidasGanadas;
     private javax.swing.JLabel jLabelPartidasJugadas;
     private javax.swing.JLabel jLabelSeleccionarPerfil;
+    private javax.swing.JLabel jLabelUserAcertadas;
     private javax.swing.JLabel jLabelUserDineroObtenido;
     private javax.swing.JLabel jLabelUserNickname;
+    private javax.swing.JLabel jLabelUserPartidasGanadas;
     private javax.swing.JLabel jLabelUserPartidasJugadas;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelFondo;

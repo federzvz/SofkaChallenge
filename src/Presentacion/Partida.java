@@ -466,7 +466,7 @@ public class Partida extends javax.swing.JInternalFrame {
                     }
 
                 } else { //La respuesta que seleccionó es incorrecta. -----FINALIZA LA PARTIDA-----
-                    this.ICPAR.registrarPartida(nicknameParticipante, ronda, acumulado);
+                    this.ICPAR.registrarPartida(nicknameParticipante, ronda-1, acumulado);
                     JOptionPane.showMessageDialog(this, "Respuesta Incorrecta.");
                     this.dispose();
                 }

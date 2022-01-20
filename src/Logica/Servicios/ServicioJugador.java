@@ -63,20 +63,20 @@ public class ServicioJugador {
         return jugadores;
     }
 
-//    public List<Jugador> obtenerJugadores() {
-//        List<Jugador> jugadores = new ArrayList<>();
-//        try {
-//            Statement status = conexion.createStatement();
-//            ResultSet rs = status.executeQuery("SELECT usu_nick FROM usuario, usuario_funcion WHERE usuario.usu_id=usuario_funcion.usu_id AND usuario_funcion.funcion_id='" + idFuncion + "'");
-//            while (rs.next()) {
-//
-//                //jugadores.add(rs.getString(1));
-//            }
-//        } catch (Exception e) {
-//            return null;
-//        }
-//        return jugadores;
-//    }
+    public List<Logica.Clases.Jugador> obtenerJugadores() {
+        List<Logica.Clases.Jugador> jugadores = new ArrayList<>();
+        try {
+            Statement status = conexion.createStatement();
+            ResultSet rs = status.executeQuery("SELECT jugadores.nickname, sum(partidas.rondasGanadas) as respuestasAcertadas, sum(partidas.dineroObtenido) as dineroObtenido, (SELECT COUNT(partidas.idJugador) FROM partidas where partidas.rondasGanadas=5 AND jugadores.id=partidas.idJugador) as partidasGanadas, count(partidas.idPartida) as partidasJugadas FROM jugadores,partidas WHERE jugadores.id=partidas.idJugador GROUP BY (jugadores.id) UNION  SELECT jugadores.nickname, 0 as respuestasAcertadas, 0 as dineroObtenido, 0 as partidasGanadas, 0 as partidasJugadas FROM jugadores WHERE jugadores.id NOT IN (SELECT partidas.idJugador FROM partidas);");
+            while (rs.next()) {
+                Logica.Clases.Jugador player = new Logica.Clases.Jugador(rs.getString("nickname"), rs.getInt("partidasGanadas"), rs.getInt("dineroObtenido"), rs.getInt("respuestasAcertadas"), rs.getInt("partidasJugadas"));
+                jugadores.add(player);
+            }
+        } catch (Exception e) {
+            return null;
+        }
+        return jugadores;
+    }
 
 }
 
