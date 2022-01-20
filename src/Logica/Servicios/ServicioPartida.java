@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -39,6 +41,28 @@ public class ServicioPartida {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+
+    public List<Logica.Clases.Partida> obtenerPartidasDeJugador(String nickname) {
+        List<Logica.Clases.Partida> partidas = new ArrayList<>();
+        try {
+            int idJugador = 0;
+            PreparedStatement status = conexion.prepareStatement("SELECT id FROM jugadores WHERE jugadores.nickname=?");
+            status.setString(1, nickname);
+            ResultSet rs = status.executeQuery();
+            if (rs.next()) {
+                idJugador = rs.getInt("id");
+            }
+            PreparedStatement status2 = conexion.prepareStatement("SELECT * FROM partidas WHERE partidas.idJugador=?;");
+            status2.setInt(1, idJugador);
+            ResultSet rs2 = status2.executeQuery();
+            while (rs2.next()) {
+                partidas.add(new Logica.Clases.Partida(rs2.getInt("idJugador"), rs2.getInt("idPartida"), rs2.getInt("dineroObtenido"), rs2.getInt("rondasGanadas")));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return partidas;
     }
 
 }

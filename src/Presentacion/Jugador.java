@@ -11,6 +11,8 @@ import Logica.Interfaz.IControladorPartida;
 import java.awt.Dimension;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,11 +21,14 @@ import javax.swing.JOptionPane;
 public class Jugador extends javax.swing.JInternalFrame {
 
     private IControladorJugador ICJUG;
+    private IControladorPartida ICPAR;
     private List<Logica.Clases.Jugador> jugadores;
+    private List<Logica.Clases.Partida> partidas;
 
     public Jugador() {
         initComponents();
         this.ICJUG = Fabrica.getInstance().getIControladorJugador();
+        this.ICPAR = Fabrica.getInstance().getIControladorPartida();
         this.jugadores = this.ICJUG.obtenerJugadores();
         rellenarComboBoxNicknameJugadores();
     }
@@ -328,11 +333,21 @@ public class Jugador extends javax.swing.JInternalFrame {
         this.jLabelUserPartidasGanadas.setText(Integer.toString(this.jugadores.get(this.jComboBox1.getSelectedIndex()).getPartidasGanadas()));
         this.jLabelUserAcertadas.setText(Integer.toString(this.jugadores.get(this.jComboBox1.getSelectedIndex()).getRespuestasAcertadas()));
         this.jLabelUserPartidasJugadas.setText(Integer.toString(this.jugadores.get(this.jComboBox1.getSelectedIndex()).getPartidasJugadas()));
+        rellenarTableHistorialPartidas((DefaultTableModel) this.jTable1.getModel());
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     public void rellenarComboBoxNicknameJugadores() {
         for (int i = 0; i < this.jugadores.size(); i++) {
             this.jComboBox1.addItem(this.jugadores.get(i).getNickname());
+        }
+    }
+
+    public void rellenarTableHistorialPartidas(DefaultTableModel tablaModelo) {
+        this.partidas = this.ICPAR.obtenerPartidasDeJugador(this.jugadores.get(this.jComboBox1.getSelectedIndex()).getNickname());
+        tablaModelo.setRowCount(0);
+        for (int i = this.partidas.size()-1; i >= 0; i--) {
+            String datos[] = {Integer.toString(i + 1), Integer.toString(this.partidas.get(i).getRondasGanadas()), Integer.toString(this.partidas.get(i).getDineroGanado())};
+            tablaModelo.addRow(datos);
         }
     }
 

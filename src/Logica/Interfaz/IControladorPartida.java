@@ -18,4 +18,5 @@ public interface IControladorPartida {
     public abstract void mostrarPreguntas(List<Categoria> test);
     public abstract int[] establecerPremios();
     public abstract void registrarPartida(String nickname, int rondasGanadas, int dineroObtenido);
+    public abstract List<Logica.Clases.Partida> obtenerPartidasDeJugador(String nickname);
 }

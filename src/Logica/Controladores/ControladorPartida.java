@@ -94,5 +94,9 @@ public class ControladorPartida implements IControladorPartida {
     public void registrarPartida(String nickname, int rondasGanadas, int dineroObtenido){
         this.servicioPartida.registrarPartida(nickname, rondasGanadas, dineroObtenido);
     }
+    
+    public List<Logica.Clases.Partida> obtenerPartidasDeJugador(String nickname){
+        return this.servicioPartida.obtenerPartidasDeJugador(nickname);
+    }
 
 }

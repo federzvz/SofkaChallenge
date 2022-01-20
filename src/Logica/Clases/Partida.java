@@ -10,36 +10,48 @@ package Logica.Clases;
  * @author Admin
  */
 public class Partida {
-    private boolean partidaEnCurso;
-    private int numeroRonda;
+    private int idJugador, numeroPartida, dineroGanado, rondasGanadas;
 
     public Partida() {
-        this.numeroRonda = 1;
     }
 
-    public Partida(boolean partidaEnCurso, int numeroRonda) {
-        this.partidaEnCurso = partidaEnCurso;
-        this.numeroRonda = numeroRonda;
+    public Partida(int idJugador, int numeroPartida, int dineroGanado, int rondasGanadas) {
+        this.idJugador = idJugador;
+        this.numeroPartida = numeroPartida;
+        this.dineroGanado = dineroGanado;
+        this.rondasGanadas = rondasGanadas;
     }
 
-    public int getNumeroRonda() {
-        return numeroRonda;
+    public int getIdJugador() {
+        return idJugador;
     }
 
-    public void setNumeroRonda(int numeroRonda) {
-        this.numeroRonda = numeroRonda;
+    public void setIdJugador(int idJugador) {
+        this.idJugador = idJugador;
     }
 
-    public boolean isPartidaEnCurso() {
-        return partidaEnCurso;
+    public int getNumeroPartida() {
+        return numeroPartida;
     }
 
-    public void setPartidaEnCurso(boolean partidaEnCurso) {
-        this.partidaEnCurso = partidaEnCurso;
+    public int getDineroGanado() {
+        return dineroGanado;
     }
-    
-    public void siguienteRonda(){
-        this.numeroRonda+=1;
+
+    public int getRondasGanadas() {
+        return rondasGanadas;
+    }
+
+    public void setNumeroPartida(int numeroPartida) {
+        this.numeroPartida = numeroPartida;
+    }
+
+    public void setDineroGanado(int dineroGanado) {
+        this.dineroGanado = dineroGanado;
+    }
+
+    public void setRondasGanadas(int rondasGanadas) {
+        this.rondasGanadas = rondasGanadas;
     }
     
     
