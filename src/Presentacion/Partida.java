@@ -426,6 +426,13 @@ public class Partida extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRetirarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetirarseActionPerformed
+        if (this.ronda==1) {
+            JOptionPane.showMessageDialog(this, "No puede retirarse en la primera ronda.");
+        } else {
+            this.ICPAR.registrarPartida(this.jComboBox1.getSelectedItem().toString(), ronda - 1, acumulado);
+            JOptionPane.showMessageDialog(this, "Has abandonado la partida.");
+            this.dispose();
+        }
 
     }//GEN-LAST:event_jButtonRetirarseActionPerformed
 
@@ -446,7 +453,7 @@ public class Partida extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jPanelOpcion4MousePressed
 
     private void jButtonResponderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResponderActionPerformed
-        if (this.jComboBox1.getItemCount()==0) {
+        if (this.jComboBox1.getItemCount() == 0) {
             JOptionPane.showMessageDialog(this, "No hay jugadores registrados. Debes crear un perfil en la sección 'Perfil' y volver a intentar.");
         } else {
             if (isOpcionSeleccionada() == true) {// Si selecciono una opción: El juego continúa, pierde, o ganó las 5 rondas.
@@ -466,7 +473,7 @@ public class Partida extends javax.swing.JInternalFrame {
                     }
 
                 } else { //La respuesta que seleccionó es incorrecta. -----FINALIZA LA PARTIDA-----
-                    this.ICPAR.registrarPartida(nicknameParticipante, ronda-1, acumulado);
+                    this.ICPAR.registrarPartida(nicknameParticipante, ronda - 1, 0);
                     JOptionPane.showMessageDialog(this, "Respuesta Incorrecta.");
                     this.dispose();
                 }
