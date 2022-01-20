@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
  * @author Admin
  */
 public class Partida extends javax.swing.JInternalFrame {
-
+    
     private IControladorCategoria ICCAT;
     private IControladorPartida ICPAR;
     private int ronda = 1;
@@ -32,7 +32,7 @@ public class Partida extends javax.swing.JInternalFrame {
     private Pregunta preguntaDeRonda = new Pregunta();
     private IControladorJugador ICJUG;
     private List<String> Jugadores;
-
+    
     public Partida() {
         initComponents();
         this.ICCAT = Fabrica.getInstance().getIControladorCategoria();
@@ -438,16 +438,18 @@ public class Partida extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jPanelOpcion4MousePressed
 
     private void jButtonResponderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResponderActionPerformed
-        //if (this.jTextFieldJugadorJugando.getText().equals("")) {
-        // JOptionPane.showMessageDialog(this, "No está participando ningún jugador, debe seleccionar un jugador.");
-        // } else {
         if (isOpcionSeleccionada() == true) {
+            
             if (obtenerOpcionSeleccionada().equalsIgnoreCase(preguntaDeRonda.getRespuestaCorrecta())) {
-                siguienteRonda();
-                actualizarDatosDePartida();
-                preguntaDeRonda = this.ICPAR.generarPregunta(this.ICCAT.crearCategoriasConPreguntas(), ronda);
-                actualizarOpcionesDePreguntasCategoria(preguntaDeRonda);
-                resetearColores();
+                if (this.ronda <= 4) {
+                    siguienteRonda();
+                    preguntaDeRonda = this.ICPAR.generarPregunta(this.ICCAT.crearCategoriasConPreguntas(), ronda);
+                    actualizarOpcionesDePreguntasCategoria(preguntaDeRonda);
+                    resetearColores();
+                }else{
+                    JOptionPane.showMessageDialog(this, "Felicitaciones, ganó las 5 rondas.");
+                }
+                
             } else {
                 JOptionPane.showMessageDialog(this, "Respuesta Incorrecta.");
                 this.dispose();
@@ -455,9 +457,8 @@ public class Partida extends javax.swing.JInternalFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una opción.");
         }
-        //}
     }//GEN-LAST:event_jButtonResponderActionPerformed
-
+    
     public void mostrarPreguntas() {
         List<Categoria> test = this.ICCAT.crearCategoriasConPreguntas();
         for (int i = 0; i < test.size(); i++) {
@@ -476,7 +477,7 @@ public class Partida extends javax.swing.JInternalFrame {
             }
         }
     }
-
+    
     public void seleccionarOpcion(int opc) {
         Color opcSelectedColor = Color.PINK;
         Color opcSinSeleccionar = Color.LIGHT_GRAY;
@@ -502,7 +503,7 @@ public class Partida extends javax.swing.JInternalFrame {
             this.jPanelOpcion4.setBackground(opcSelectedColor);
         }
     }
-
+    
     public boolean isOpcionSeleccionada() {
         if (this.jPanelOpcion1.getBackground() == Color.PINK || this.jPanelOpcion2.getBackground() == Color.PINK || this.jPanelOpcion3.getBackground() == Color.PINK || this.jPanelOpcion4.getBackground() == Color.PINK) {
             return true;
@@ -510,7 +511,7 @@ public class Partida extends javax.swing.JInternalFrame {
             return false;
         }
     }
-
+    
     public int[] establecerPremios() {
         int[] premios = new int[5];
         premios[0] = 100;
@@ -520,17 +521,40 @@ public class Partida extends javax.swing.JInternalFrame {
         premios[4] = 2000;
         return premios;
     }
-
+    
     public void actualizarDatosDePartida() { //Actualiza la ronda y premios.
-        this.jLabelPremioActualNum.setText(Integer.toString(this.premiosPorRonda[this.ronda - 1])); //Actualizo el premio actual
+        if (this.ronda <= 5) {
+            this.jLabelPremioActualNum.setText(Integer.toString(this.premiosPorRonda[this.ronda - 1]));
+        }
+//Actualizo el premio actual
         this.jLabelNumero.setText(Integer.toString(this.ronda));
     }
-
+    
+    public void actualizarAcumulado(int ronda) {
+        if (this.ronda == 1) {
+            this.acumulado = 100;
+        }
+        if (this.ronda == 2) {
+            this.acumulado = 400;
+        }
+        if (this.ronda == 3) {
+            this.acumulado = 900;
+        }
+        if (this.ronda == 4) {
+            this.acumulado = 1900;
+        }
+        if (this.ronda == 5) {
+            this.acumulado = 3900;
+        }
+    }
+    
     public void siguienteRonda() {
+        actualizarAcumulado(this.ronda);
         this.ronda++;
         actualizarDatosDePartida();
+        this.jLabelPremioAcumuladoNum.setText(Integer.toString(this.acumulado));
     }
-
+    
     public void actualizarOpcionesDePreguntasCategoria(Pregunta pregunta) {
         Random randomGenerator = new Random();
         int respuestaCorrectaIndex = randomGenerator.nextInt(4);
@@ -558,7 +582,7 @@ public class Partida extends javax.swing.JInternalFrame {
             this.jLabelOpcPregunta2.setText(pregunta.getRespuestaCorrecta());
         }
     }
-
+    
     public String obtenerOpcionSeleccionada() {
         if (this.jPanelOpcion1.getBackground() == Color.PINK) {
             return this.jLabelOpcPregunta1.getText();
@@ -570,14 +594,14 @@ public class Partida extends javax.swing.JInternalFrame {
             return this.jLabelOpcPregunta4.getText();
         }
     }
-
+    
     public void resetearColores() {
         this.jPanelOpcion1.setBackground(Color.LIGHT_GRAY);
         this.jPanelOpcion2.setBackground(Color.LIGHT_GRAY);
         this.jPanelOpcion3.setBackground(Color.LIGHT_GRAY);
         this.jPanelOpcion4.setBackground(Color.LIGHT_GRAY);
     }
-
+    
     public void rellenarComboBoxJugadores() {
         this.Jugadores = this.ICJUG.obtenerNicknamesJugadores();
         for (int i = 0; i < this.Jugadores.size(); i++) {
