@@ -1,5 +1,5 @@
 package Persistencia;
- 
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,44 +12,63 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-
 public class ConexionDB {
-    private final String host=this.LeerProperties("host");
-    private final String port=this.LeerProperties("port");
-    private final String db=this.LeerProperties("db");
-    private final String user=this.LeerProperties("user");
-    private final String pass=this.LeerProperties("pass");
-   
-    
-    private Connection conexion=null;
-    public ConexionDB(){};
+
+    private final String host = this.LeerProperties("host");
+    private final String port = this.LeerProperties("port");
+    private final String db = this.LeerProperties("db");
+    private final String user = this.LeerProperties("user");
+    private final String pass = this.LeerProperties("pass");
+
+    private Connection conexion = null;
+
+    public ConexionDB() {
+    }
+
+    ;
     
     public String LeerProperties(String caso) {
-           
-        switch (caso) {
-            case "host":  return "127.0.0.1";//prop.getProperty("host");
-       
-            case "port":  return "3306";//prop.getProperty("port");
-                     
-            case "db":  return "sofkachallenge";//prop.getProperty("db");
-                     
-            case "user":  return "root";//prop.getProperty("user");
-                     
-            case "pass":  return "federico12349";//prop.getProperty("pass");
 
-            default: return "";
-              
-        }     
+        Properties prop = new Properties();
+        InputStream archivo = null;
+
+        try {
+            archivo = new FileInputStream(System.getProperty("user.dir") + "\\Config.properties");
+            prop.load(archivo);
+
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        switch (caso) {
+            case "host":
+                return prop.getProperty("host");
+
+            case "port":
+                return prop.getProperty("port");
+
+            case "db":
+                return prop.getProperty("db");
+
+            case "user":
+                return prop.getProperty("user");
+
+            case "pass":
+                return prop.getProperty("pass");
+
+            default:
+                return "";
+
+        }
     }
-   
+
     public Connection getConexion() {
-           
+
         if (conexion == null) {
             try {
                 Driver driver = new com.mysql.jdbc.Driver();
                 DriverManager.registerDriver(driver);
-                
-                conexion = DriverManager.getConnection("jdbc:mysql://"+host+":"+port+"/"+db+"?characterEncoding=utf8", user, pass);
+
+                conexion = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + db + "?characterEncoding=utf8", user, pass);
                 System.out.println("Conectado");
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -58,8 +77,8 @@ public class ConexionDB {
         }
         return conexion;
     }
-    
-    public void cerrar(){
+
+    public void cerrar() {
         if (conexion != null) {
             try {
                 conexion.close();
@@ -67,7 +86,7 @@ public class ConexionDB {
                 ex.printStackTrace();
                 Logger.getLogger(ConexionDB.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }        
+        }
     }
-    
+
 }
