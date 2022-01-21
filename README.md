@@ -59,6 +59,8 @@ FUNCIONALIDADES:
       - Ronda Actual: Se indica la ronda actual, el número de ronda indica la complejidad de las categorías y sus preguntas, dónde la complejidad es ascendente.
       - Premio Actual: Cantidad de 'dinero' a recibir en caso acertar la pregunta de la actual ronda.
       - Acumulado: Se detalla la cantidad del acumulado producto de los aciertos en las anteriores rondas.
+    - Partida finalizada
+      - Cuando una partida finaliza, se reinician todos los valores a excepción de uno: El sistema recuerda el último participante en jugar, añadiendo dinamismo al juego.
     - Restricciones
       - No se puede dar inicio a la partida si no hay jugadores registrados en el sistema.
       - No es posible avanzar si no ha seleccionado ninguna opción de respuesta.
@@ -78,3 +80,5 @@ FUNCIONALIDADES:
         - Número de partdia
         - Rondas ganadas
         - Dinero obtenido
+    - Restricciones
+      - Los "Nickname's" son únicos, por lo que no es posible crear un perfil con un "Nickname" que ya exista en el sistema.
