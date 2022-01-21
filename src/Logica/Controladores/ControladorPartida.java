@@ -23,13 +23,9 @@ public class ControladorPartida implements IControladorPartida {
 
     private static ControladorPartida instancia;
     private ServicioPartida servicioPartida;
-    private Map<String, Partida> partidas;
-    private Pregunta preguntaDeRonda;
 
-    public ControladorPartida(ServicioPartida servicioPartida, Map<String, Partida> partidas, Pregunta preguntaDeRonda) {
+    public ControladorPartida(ServicioPartida servicioPartida, List<Partida> partidas, Pregunta preguntaDeRonda) {
         this.servicioPartida = servicioPartida;
-        this.partidas = partidas;
-        this.preguntaDeRonda = preguntaDeRonda;
     }
 
     public ControladorPartida() {

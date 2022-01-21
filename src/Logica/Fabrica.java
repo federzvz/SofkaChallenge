@@ -8,11 +8,9 @@ package Logica;
 import Logica.Controladores.ControladorCategoria;
 import Logica.Controladores.ControladorJugador;
 import Logica.Controladores.ControladorPartida;
-import Logica.Controladores.ControladorPregunta;
 import Logica.Interfaz.IControladorCategoria;
 import Logica.Interfaz.IControladorJugador;
 import Logica.Interfaz.IControladorPartida;
-import Logica.Interfaz.IControladorPregunta;
 
 /**
  *
@@ -32,11 +30,6 @@ public class Fabrica {
     public IControladorPartida getIControladorPartida() {
         IControladorPartida ControladorF = ControladorPartida.getInstance();
         return ControladorF; //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public IControladorPregunta getIControladorPregunta() {
-        IControladorPregunta ControladorP = ControladorPregunta.getInstance();
-        return ControladorP; //To change body of generated methods, choose Tools | Templates.
     }
 
     public IControladorCategoria getIControladorCategoria() {

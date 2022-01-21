@@ -8,7 +8,6 @@
             <file>file:/C:/Users/Admin/Documents/GitHub/SofkaChallenge/src/Presentacion/Main.java</file>
             <file>file:/C:/Users/Admin/Documents/GitHub/SofkaChallenge/src/Logica/Controladores/ControladorCategoria.java</file>
             <file>file:/C:/Users/Admin/Documents/GitHub/SofkaChallenge/src/Logica/Interfaz/IControladorPartida.java</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/SofkaChallenge/src/Logica/Clases/Estadistica.java</file>
             <file>file:/C:/Users/Admin/Documents/GitHub/SofkaChallenge/src/Logica/Controladores/ControladorPartida.java</file>
             <file>file:/C:/Users/Admin/Documents/GitHub/SofkaChallenge/src/Logica/Clases/Jugador.java</file>
             <file>file:/C:/Users/Admin/Documents/GitHub/SofkaChallenge/src/Logica/Servicios/ServicioPartida.java</file>
@@ -16,6 +15,7 @@
             <file>file:/C:/Users/Admin/Documents/GitHub/SofkaChallenge/src/Logica/Clases/Categoria.java</file>
             <file>file:/C:/Users/Admin/Documents/GitHub/SofkaChallenge/src/Logica/Controladores/ControladorJugador.java</file>
             <file>file:/C:/Users/Admin/Documents/GitHub/SofkaChallenge/src/Presentacion/Partida.java</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SofkaChallenge/src/Logica/Interfaz/IControladorPregunta.java</file>
             <file>file:/C:/Users/Admin/Documents/GitHub/SofkaChallenge/src/Logica/Controladores/ControladorPregunta.java</file>
             <file>file:/C:/Users/Admin/Documents/GitHub/SofkaChallenge/src/Persistencia/ConexionDB.java</file>
             <file>file:/C:/Users/Admin/Documents/GitHub/SofkaChallenge/src/Logica/Servicios/ServicioJugador.java</file>

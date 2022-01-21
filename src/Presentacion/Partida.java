@@ -48,6 +48,7 @@ public class Partida extends javax.swing.JInternalFrame {
         actualizarDatosDePartida();
         preguntaDeRonda = this.ICPAR.generarPregunta(this.ICCAT.crearCategoriasConPreguntas(), ronda);
         actualizarOpcionesDePreguntasCategoria(preguntaDeRonda);
+        persistirJugadorParticipante(Presentacion.Main.participante);
     }
 
     /**
@@ -98,7 +99,7 @@ public class Partida extends javax.swing.JInternalFrame {
         jLabelPregunta.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabelPregunta.setForeground(new java.awt.Color(255, 255, 255));
         jLabelPregunta.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabelPregunta.setText("PREGUNTA: ¿Puede que esa una pregunta de prueba? ");
+        jLabelPregunta.setText("PREGUNTA: ¿Puede que sea esta una pregunta de prueba? ");
 
         jLabelCategoria.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabelCategoria.setForeground(new java.awt.Color(255, 255, 255));
@@ -376,7 +377,7 @@ public class Partida extends javax.swing.JInternalFrame {
                 .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanelFondoLayout.createSequentialGroup()
                         .addComponent(jPanelPreguntaCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(337, Short.MAX_VALUE))
+                        .addContainerGap(326, Short.MAX_VALUE))
                     .addGroup(jPanelFondoLayout.createSequentialGroup()
                         .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanelRondas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -436,7 +437,7 @@ public class Partida extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "No puedes retirarte en la primera ronda.");
             } else {
                 this.ICPAR.registrarPartida(this.jComboBox1.getSelectedItem().toString(), ronda - 1, acumulado);
-                JOptionPane.showMessageDialog(this, "Has abandonado la partida. Rondas jugadas: "+ Integer.toString(ronda-1) +", te retiras con un acumulado de: "+acumulado);
+                JOptionPane.showMessageDialog(this, "Has abandonado la partida. Rondas jugadas: " + Integer.toString(ronda - 1) + ", te retiras con un acumulado de: " + acumulado);
                 this.dispose();
                 resetearVentana();
             }
@@ -498,7 +499,7 @@ public class Partida extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     public void seleccionarOpcion(int opc) { //Cambiar color al seleccionar una opción.
-        Color opcSelectedColor = Color.PINK;
+        Color opcSelectedColor = Color.GRAY;
         Color opcSinSeleccionar = Color.LIGHT_GRAY;
         Font normal = new Font("sansserif", Font.PLAIN, 12);
         Font seleccionado = new Font("sansserif", Font.BOLD, 13);
@@ -543,7 +544,7 @@ public class Partida extends javax.swing.JInternalFrame {
     }
 
     public boolean isOpcionSeleccionada() { //Verificar si seleccionó alguna opción
-        if (this.jPanelOpcion1.getBackground() == Color.PINK || this.jPanelOpcion2.getBackground() == Color.PINK || this.jPanelOpcion3.getBackground() == Color.PINK || this.jPanelOpcion4.getBackground() == Color.PINK) {
+        if (this.jPanelOpcion1.getBackground() == Color.GRAY || this.jPanelOpcion2.getBackground() == Color.GRAY || this.jPanelOpcion3.getBackground() == Color.GRAY || this.jPanelOpcion4.getBackground() == Color.GRAY) {
             return true;
         } else {
             return false;
@@ -612,11 +613,11 @@ public class Partida extends javax.swing.JInternalFrame {
     }
 
     public String obtenerOpcionSeleccionada() { //Se retorna el contenido de la opción seleccionada
-        if (this.jPanelOpcion1.getBackground() == Color.PINK) {
+        if (this.jPanelOpcion1.getBackground() == Color.GRAY) {
             return this.jLabelOpcPregunta1.getText();
-        } else if (this.jPanelOpcion2.getBackground() == Color.PINK) {
+        } else if (this.jPanelOpcion2.getBackground() == Color.GRAY) {
             return this.jLabelOpcPregunta2.getText();
-        } else if (this.jPanelOpcion3.getBackground() == Color.PINK) {
+        } else if (this.jPanelOpcion3.getBackground() == Color.GRAY) {
             return this.jLabelOpcPregunta3.getText();
         } else {
             return this.jLabelOpcPregunta4.getText();
@@ -643,6 +644,7 @@ public class Partida extends javax.swing.JInternalFrame {
     }
 
     public void resetearVentana() {
+        Presentacion.Main.participante=this.nicknameParticipante;
         Presentacion.Main.jDesktopPane1.removeAll();
         Partida ventana = new Partida();
         Presentacion.Main.jDesktopPane1.add(ventana);
@@ -651,6 +653,17 @@ public class Partida extends javax.swing.JInternalFrame {
         ventana.setLocation((desktopSize.width - jInternalFrameSize.width) / 2,
                 (desktopSize.height - jInternalFrameSize.height) / 2);
         ventana.setVisible(true);
+    }
+
+    public void persistirJugadorParticipante(String participante) {
+        if(participante==null){
+            return;
+        }
+        for (int i = 0; i < jComboBox1.getItemCount(); i++) {
+            if (jComboBox1.getItemAt(i).toString().contains(participante)) {
+                jComboBox1.setSelectedIndex(i);
+            }
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

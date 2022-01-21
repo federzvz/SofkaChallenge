@@ -580,6 +580,78 @@ public class ControladorCategoria implements IControladorCategoria {
         categoriaAux.setPreguntas(preguntas); //Añadimos las preguntas creadas a la categoría
         categorias.add(categoriaAux); //Añadimos la categoría con sus respectivas preguntas a una lista del mismo tipo
         /*-----FIN DE ESTRUCTURA PARA AÑADIR CATEGIRÍA Y SUS PREGUNTAS -----*/
+        
+        /*-----INICIO DE ESTRUCTURA PARA AÑADIR CATEGIRÍA Y SUS PREGUNTAS -----*/
+        categoriaAux = new Categoria(); //Reseteamos la instancia auxiliar
+        preguntas = new ArrayList<>();
+        categoriaAux.setNombre("Biología");
+        categoriaAux.setNivelDeComplejidad(4);
+
+        preguntaAux.setPregunta("¿Cual de estas no es una función del aparato de Golgi?");
+        respuestasIncorrectas.add("Síntesis de polisacáridos.");
+        respuestasIncorrectas.add("Modificaciones pos-traduccionales de proteínas provenientes del retículo endoplásmico.");
+        respuestasIncorrectas.add("Clasificación de proteínas según su destino.");
+        respuestaCorrecta = "Síntesis de ribosomas.";
+        preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
+        preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
+        preguntas.add(preguntaAux);
+
+        preguntaAux = new Pregunta(); //Reseteamos la variable
+        respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
+        
+        preguntaAux.setPregunta("¿cuánto mide el tubo digestivo??");
+        respuestasIncorrectas.add("20 metros");
+        respuestasIncorrectas.add("2 metros");
+        respuestasIncorrectas.add("8 metros");
+        respuestaCorrecta = "10 metros";
+        preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
+        preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
+        preguntas.add(preguntaAux);
+
+        preguntaAux = new Pregunta(); //Reseteamos la variable
+        respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
+        
+        preguntaAux.setPregunta("¿De qué están compuestas las uñas?");
+        respuestasIncorrectas.add("Colágeno");
+        respuestasIncorrectas.add("Crtílago");
+        respuestasIncorrectas.add("Hueso");
+        respuestaCorrecta = "Queratina";
+        preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
+        preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
+        preguntas.add(preguntaAux);
+
+        preguntaAux = new Pregunta(); //Reseteamos la variable
+        respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
+        
+        preguntaAux.setPregunta("¿Cuáles son los cinco reinos en los que se clasifican a los seres vivos?");
+        respuestasIncorrectas.add("Animal y vegetal");
+        respuestasIncorrectas.add("Animal, vegetal, hongos, eucarios y protistas.");
+        respuestasIncorrectas.add("Animal, vegetal y hongos.");
+        respuestaCorrecta = "Animal, vegetal, monera, protista y hongos.";
+        preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
+        preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
+        preguntas.add(preguntaAux);
+
+        preguntaAux = new Pregunta(); //Reseteamos la variable
+        respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
+        
+        preguntaAux.setPregunta("¿Cuál es la mínima unidad estructural del cuerpo humano?");
+        respuestasIncorrectas.add("tejido óseo");
+        respuestasIncorrectas.add("neurona");
+        respuestasIncorrectas.add("tejido muscular");
+        respuestaCorrecta = "la célula";
+        preguntaAux.setRespuestaCorrecta(respuestaCorrecta);
+        preguntaAux.setRespuestasIncorrectas(respuestasIncorrectas);
+        preguntas.add(preguntaAux);
+
+        preguntaAux = new Pregunta(); //Reseteamos la variable
+        respuestasIncorrectas = new ArrayList<>(); //Reseteamos la variable
+        
+        
+
+        categoriaAux.setPreguntas(preguntas); //Añadimos las preguntas creadas a la categoría
+        categorias.add(categoriaAux); //Añadimos la categoría con sus respectivas preguntas a una lista del mismo tipo
+        /*-----FIN DE ESTRUCTURA PARA AÑADIR CATEGIRÍA Y SUS PREGUNTAS -----*/
 
         return categorias;
     }

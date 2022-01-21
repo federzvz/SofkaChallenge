@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  * @author Admin
  */
 public class Main extends javax.swing.JFrame {
-
+    public static String participante;
     /**
      * Creates new form Main
      */
