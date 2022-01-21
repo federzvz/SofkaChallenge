@@ -1,4 +1,11 @@
 # CHALLENGE - Concurso de preguntas y respuestas
+***TUTORIAL: COMO DESCARGAR, PREPARAR E INICIAR EL JUEGO***
+1) [Descarga los archivos necesarios](https://drive.google.com/file/d/1GF1uQQv8UeAMPhWPm03kAgHIsh9ifbWs/view).
+2) Descomprir el rar en una carpeta.
+3) Importar el archivo `sofkachallenge.sql` en su gestor de base de datos local.
+4) Configurar el archivo `config.properties` para conectarse con la base de datos importada en el paso 3).
+5) Ejecutar `SofkaChallenge.jar`
+> NOTA: Si no se puede establecer la conexión a la base de datos, el juego no se ejecutará. Es importante que cumpla con los pasos 3) y 4) de forma correcta.
 
 ***PROPIEDADES DE LA SOLUCIÓN***
 
